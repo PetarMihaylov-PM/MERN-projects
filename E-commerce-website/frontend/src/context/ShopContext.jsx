@@ -3,18 +3,20 @@ import { products } from "../assets/frontend_assets/assets";
 
 export const ShopContext = createContext();
 
-const ShopContextProvider = (props) => {
+const ShopContextProvider = ({children}) => {
 
   const currency = '$';
   const deliveryFee = 10;
 
   const value = {
-    products, currency, deliveryFee
+    products, 
+    currency, 
+    deliveryFee
   }
 
   return(
     <ShopContext.Provider value={value}>
-      {props.children}
+      {children}
     </ShopContext.Provider>
   )
 }
