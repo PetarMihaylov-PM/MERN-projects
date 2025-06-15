@@ -35,7 +35,7 @@ function Collection() {
 
     let productsCopy = products.slice();
 
-    if(showFilter && search) {
+    if(showSearch && search) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
     }
 
