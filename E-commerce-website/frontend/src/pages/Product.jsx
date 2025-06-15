@@ -10,6 +10,7 @@ function Product() {
 
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
+  const [size, setSize] = useState('');
 
   const fetchProductData = async () => {
     products.find(item => {
@@ -60,6 +61,20 @@ function Product() {
           </div>
           <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
           <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
+          <div className='flex flex-col gap-4 my-8'>
+            <p>Select Size</p>
+            <div className='flex gap-2'>
+              {productData.sizes.map((item, index) => (
+                <button onClick={() => setSize(item)} 
+                className={`w-12 text-sm border py-2 px-4 bg-gray-100 ${item === size ? ' border-orange-500' : '' }`} 
+                key={index}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+          <button className='bg-black text-white px-9 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
         </div>
       </div>
       
