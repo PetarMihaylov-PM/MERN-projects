@@ -38,7 +38,7 @@ function Product() {
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
             {
               productData.image.map((item, index) => (
-                <img onClick={()=> setImage(item)} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt="img" />
+                <img onClick={()=> setImage(item)} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer transition-all ease-in hover:scale-110' alt="img" />
               ))
             }
           </div>
@@ -66,7 +66,7 @@ function Product() {
             <div className='flex gap-2'>
               {productData.sizes.map((item, index) => (
                 <button onClick={() => setSize(item)} 
-                className={`w-12 text-sm border py-2 px-4 bg-gray-100 ${item === size ? ' border-orange-500' : '' }`} 
+                className={`w-12 text-sm border py-2 px-4 bg-gray-100 cursor-pointer ${item === size ? ' border-orange-500' : '' }`} 
                 key={index}
                 >
                   {item}
@@ -74,7 +74,7 @@ function Product() {
               ))}
             </div>
           </div>
-          <button className='bg-black text-white px-9 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+          <button className='bg-black text-white px-9 py-3 text-sm cursor-pointer active:opacity-80 hover:bg-gray-800'>ADD TO CART</button>
         </div>
       </div>
       
