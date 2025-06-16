@@ -8,11 +8,16 @@ import RelatedProducts from '../components/RelatedProducts';
 function Product() {
 
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
 
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
+
+  const scrollToTheTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+  
 
   const fetchProductData = async () => {
     products.find(item => {
@@ -76,7 +81,7 @@ function Product() {
               ))}
             </div>
           </div>
-          <button className='bg-black text-white px-9 py-3 text-sm cursor-pointer active:opacity-80 hover:bg-gray-800'>ADD TO CART</button>
+          <button onClick={()=>addToCart(productData._id, size)} className='bg-black text-white px-9 py-3 text-sm cursor-pointer active:opacity-80 hover:bg-gray-800'>ADD TO CART</button>
           <hr className='mt-8 sm:w-4/5'/>
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
             <p>100% Original product.</p>
@@ -100,7 +105,7 @@ function Product() {
 
       {/* Related products */}
       
-      <RelatedProducts onClick={window.scrollTo({ top: 0, behavior: 'smooth' })} category={productData.category} subCategory={productData.subCategory}/>
+      <RelatedProducts onClick={() => scrollToTheTop()} category={productData.category} subCategory={productData.subCategory}/>
       
     </div>
   ) : <div className='opacity-0'></div>

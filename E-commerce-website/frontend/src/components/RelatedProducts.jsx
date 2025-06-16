@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from './Title';
 import ProductItem from './ProductItem';
+import { Link } from 'react-router-dom';
 
-const RelatedProducts = ({category, subCategory}) => {
+const RelatedProducts = ({category, subCategory, onClick}) => {
 
   const { products } = useContext(ShopContext);
   const [related, setRelated] = useState([]);
@@ -29,7 +30,13 @@ const RelatedProducts = ({category, subCategory}) => {
       </div>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
         {related.map((item, index) => (
-          <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image}/>
+          <Link
+            onClick={onClick}
+            to={`/product/${item._id}`}
+            key={item._id}
+          >
+            <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image}/>
+          </Link>
         ))}
       </div>
     </div>
