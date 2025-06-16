@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
+import { Link } from 'react-scroll';
 
 function Product() {
 
@@ -42,7 +44,7 @@ function Product() {
               ))
             }
           </div>
-          <div className='w-full sm:w-[80%]'>
+          <div id='mainImg' className='w-full sm:w-[80%]'>
             <img src={image} className='w-full h-auto' alt='img' />
           </div>
         </div>
@@ -95,6 +97,12 @@ function Product() {
           <p>"I absolutely love this hoodie! It's so soft and comfortable — perfect for chilly mornings or casual outings. The oversized fit gives it a trendy look, and the quality is top-notch. I've washed it several times and it still looks brand new. Definitely getting another color!"</p>
         </div>
       </div>
+
+      {/* Related products */}
+      
+      <Link to='mainImg' duration={500} smooth={true} offset={-30}>
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
+      </Link>
     </div>
   ) : <div className='opacity-0'></div>
 }
