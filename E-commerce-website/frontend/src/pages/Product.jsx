@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
-import { Link } from 'react-scroll';
+
 
 function Product() {
 
@@ -100,9 +100,8 @@ function Product() {
 
       {/* Related products */}
       
-      <Link to='mainImg' duration={500} smooth={true} offset={-30}>
-      <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
-      </Link>
+      <RelatedProducts onClick={window.scrollTo({ top: 0, behavior: 'smooth' })} category={productData.category} subCategory={productData.subCategory}/>
+      
     </div>
   ) : <div className='opacity-0'></div>
 }
