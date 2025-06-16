@@ -75,9 +75,26 @@ function Product() {
             </div>
           </div>
           <button className='bg-black text-white px-9 py-3 text-sm cursor-pointer active:opacity-80 hover:bg-gray-800'>ADD TO CART</button>
+          <hr className='mt-8 sm:w-4/5'/>
+          <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
+            <p>100% Original product.</p>
+            <p>Cash on delivery is available on this product.</p>
+            <p>Easy return and exchange policy within 7 days.</p>
+          </div>
         </div>
       </div>
       
+      {/* Description & Review Section */}
+      <div className='mt-20'>
+        <div className='flex'>
+          <b className='border px-5 py-3 text-sm'>Description</b>
+          <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
+        </div>
+        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
+          <p>Stay cozy and stylish in this classic oversized hoodie, crafted from ultra-soft cotton-blend fleece. Featuring a relaxed fit, ribbed cuffs, and a spacious front pocket, it's perfect for layering or lounging. Available in neutral tones for effortless pairing with any outfit.</p>
+          <p>"I absolutely love this hoodie! It's so soft and comfortable — perfect for chilly mornings or casual outings. The oversized fit gives it a trendy look, and the quality is top-notch. I've washed it several times and it still looks brand new. Definitely getting another color!"</p>
+        </div>
+      </div>
     </div>
   ) : <div className='opacity-0'></div>
 }
