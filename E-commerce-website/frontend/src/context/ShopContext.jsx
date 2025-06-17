@@ -27,7 +27,7 @@ const ShopContextProvider = ({children}) => {
 
     else {
       cartData[itemId] = {};
-      cartData[itemId] [size] = 1;
+      cartData[itemId][size] = 1;
     }
     setCartItems(cartData);
   }
