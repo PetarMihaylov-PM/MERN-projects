@@ -64,6 +64,20 @@ const ShopContextProvider = ({children}) => {
     setCartItems(cartData);
   }
 
+  const getCartAmount = async() => {
+    let totalAmount = 0;
+
+    for(const items in cartItems){
+      let itemInfo = products.find(product => product._id === product._id);
+      for(const item in cartItems[items]){
+        if (cartItems[items][item] > 0) {
+          totalAmount += itemInfo.price * cartItems[items][item];
+        }  
+      }
+    }
+    return totalAmount;
+  }
+
   useEffect(() => {
     console.log(cartItems);
   },[cartItems])
@@ -79,7 +93,8 @@ const ShopContextProvider = ({children}) => {
     cartItems,
     addToCart,
     getCartCount,
-    updateQuantity
+    updateQuantity,
+    getCartAmount
   }
 
   return(
