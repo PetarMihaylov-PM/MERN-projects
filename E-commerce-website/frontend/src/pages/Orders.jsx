@@ -16,8 +16,8 @@ function Orders() {
       <div>
         {
           products.slice(1,4).map((item, index) => (
-            <div key={index} className='py-4 borde-t text-gray-700 flex flex-row md:flex-row md:items-center md:justify-between gap-4'>
-              <div className='flex item-start gap-6 text-sm'>
+            <div key={index} className='py-4 border-t text-gray-700 flex flex-row md:flex-row md:items-center md:justify-between gap-4'>
+              <div className='flex items-start gap-6 text-sm'>
                 <img className='w-16 sm:w-20' src={item.image[0]} alt="product-img" />
                 <div>
                   <p className='sm:text-base font-medium'>
@@ -31,11 +31,12 @@ function Orders() {
                   <p className='mt-2'>Date: <span className='text-gray-400'>25, Jul, 2024</span></p>
                 </div>
               </div>
-              <div className='md:w-1/2 flex justify-between'>
+              <div className='md:w-1/2 flex justify-between items-center sm:justify-between sm: gap-4'>
                 <div className='flex items-center gap-2'>
-                  <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
+                  <p className='w-2 h-2 rounded-full bg-green-500'></p>
                   <p className='text-sm md:text-base'>Ready to ship</p>
                 </div>
+                <button className='w-30 h-10 border text-sm font-medium rounded-sm'>Track Order</button>
               </div>
             </div>
           ))
