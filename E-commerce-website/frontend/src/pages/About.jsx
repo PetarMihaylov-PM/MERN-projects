@@ -1,6 +1,7 @@
 import React from 'react'
 import Title from '../components/Title'
-import { assets } from '../assets/frontend_assets/assets'
+import { assets } from '../assets/frontend_assets/assets';
+import NewsLetterBox from '../components/NewsLetterBox';
 
 function About() {
   return (
@@ -24,21 +25,24 @@ function About() {
       </div>
 
       <div className='flex flex-col md:flex-row text-sm mb-20'>
-        <div className='border md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+        <div className='border border-gray-400 md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
           <b>Quality Assurance:</b>
-          <p>At Forever, quality is at the heart of everything we do. Every product we offer is carefully selected and rigorously inspected to meet our high standards.</p>
+          <p className='text-gray-600'>At Forever, quality is at the heart of everything we do. Every product we offer is carefully selected and rigorously inspected to meet our high standards.</p>
         </div>
 
-        <div className='border md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+        <div className='border border-gray-400 md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
           <b>Convenience:</b>
-          <p>Shopping at Forever is designed to be simple, fast, and stress-free. With an intuitive website, secure payment options, and quick delivery, we make it easy for you to find what you need — anytime, anywhere.</p>
+          <p className='text-gray-600'>Shopping at Forever is designed to be simple, fast, and stress-free. With an intuitive website, secure payment options, and quick delivery, we make it easy for you to find what you need — anytime, anywhere.</p>
         </div>
 
-        <div className='border md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+        <div className='border border-gray-400 md:w-[33%] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
           <b>Customer Service:</b>
-          <p>At Forever, we’re committed to providing exceptional customer service every step of the way.</p>
+          <p className='text-gray-600'>At Forever, we’re committed to providing exceptional customer service every step of the way.</p>
         </div>
       </div>
+
+      <NewsLetterBox/>
+      
     </div>
   )
 }
