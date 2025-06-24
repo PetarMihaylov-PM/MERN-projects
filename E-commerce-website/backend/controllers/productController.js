@@ -28,3 +28,5 @@ const removeProduct = async(req, res) => {
 const singleProduct = async(req, res) => {
 
 }
+
+export {addProduct, listProducts, removeProduct, singleProduct};
