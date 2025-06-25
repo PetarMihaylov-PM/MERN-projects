@@ -3,7 +3,6 @@ import productModel from '../models/productModule.js'
 
 
 
-
 // add product
 const addProduct = async (req, res) => {
 
@@ -51,14 +50,12 @@ const addProduct = async (req, res) => {
 
 
 
-
 // list product
 const listProducts = async (req, res) => {
   try {
     
     const products = await productModel.find({})
     
-
     res.json({success: true, products});
 
   } catch (error) {
@@ -68,7 +65,6 @@ const listProducts = async (req, res) => {
 
   }
 }
-
 
 
 // remove product
