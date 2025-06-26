@@ -27,4 +27,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server started on port: ${port}`);
+  console.log('admin password is: ', process.env.ADMIN_PASSWORD);
 })
