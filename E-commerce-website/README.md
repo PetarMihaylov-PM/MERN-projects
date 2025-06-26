@@ -7,3 +7,5 @@ styling and Vite for fast development and build performance.
 Key features include product browsing, a shopping cart, and promotional sections. Future improvements will include user authentication, 
 a full checkout flow, and backend integration for dynamic content and orders.
 
+![image](https://github.com/user-attachments/assets/2e2986fd-c82d-4d20-8108-31588c0430a6)
+
