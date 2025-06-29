@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../assets/assets'
 
 const Add = ({token}) => {
+
+  const [image1, setImage1] = useState(false);
+  const [image2, setImage2] = useState(false);
+  const [image3, setImage3] = useState(false);
+  const [image4, setImage4] = useState(false);
+
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('Men');
+  const [subcategory, setSubcategory] = useState('Topwear');
+  const [bestseller, setBestseller] = useState(false);
+  const [sizes, setSizes] = useState([]);
+
+
+
   return (
     <form className='flex flex-col w-full items-start gap-3'>
       <div>
@@ -9,22 +25,22 @@ const Add = ({token}) => {
         <div className='flex gap-2'>
           <label htmlFor='image1'>
             <img className='w-20 cursor-pointer' src={assets.upload_area} alt="upload-icon" />
-            <input type="file" id='image1' hidden/>
+            <input onChange={(e) => setImage1(e.target.files[0])} type="file" id='image1' hidden/>
           </label>
 
           <label htmlFor='image2'>
             <img className='w-20 cursor-pointer' src={assets.upload_area} alt="upload-icon" />
-            <input type="file" id='image2' hidden/>
+            <input onChange={(e) => setImage2(e.target.files[0])} type="file" id='image2' hidden/>
           </label>
 
           <label htmlFor='image3'>
             <img className='w-20 cursor-pointer' src={assets.upload_area} alt="upload-icon" />
-            <input type="file" id='image3' hidden/>
+            <input onChange={(e) => setImage3(e.target.files[0])} type="file" id='image3' hidden/>
           </label>
 
           <label htmlFor='image4'>
             <img className='w-20 cursor-pointer' src={assets.upload_area} alt="upload-icon" />
-            <input type="file" id='image4' hidden/>
+            <input onChange={(e) => setImage4(e.target.files[0])} type="file" id='image4' hidden/>
           </label>
         </div>
       </div>
