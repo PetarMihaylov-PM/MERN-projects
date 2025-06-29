@@ -39,9 +39,9 @@ const Add = ({token}) => {
         <textarea className='w- full max-w-[500px] px-3 py-2' type="text" placeholder='Write content here' required/>
       </div>
 
-      <div className='flex flex-col items-center sm:flex-row gap-2 w-full sm:gap-8'>
+      <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
         <div>
-          <p className='mb-2'>Product category</p>
+          <p className='mb-2 text-nowrap'>Product category</p>
           <select className='w-full px-3 py-2'>
             <option value="Men">Men</option>
             <option value="Women">Women</option>
@@ -59,8 +59,8 @@ const Add = ({token}) => {
         </div>
 
         <div>
-          <p>Product price</p>
-          <input type="number" placeholder='25' />
+          <p className='mb-2'>Product price</p>
+          <input className='w-full px-3 py-2 sm:w-[120px]' type="number" placeholder='25' />
         </div>
       </div>
 
