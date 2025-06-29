@@ -29,10 +29,42 @@ const Add = ({token}) => {
         </div>
       </div>
 
-      <div>
-        <p>Product name</p>
+      <div className='w-full'>
+        <p className='mb-2'>Product name</p>
         <input className='w-full max-w-[500px] px-3 py-2' type="text" placeholder='Type here' required/>
       </div>
+
+      <div className='w-full'>
+        <p className='mb-2'>Product description</p>
+        <textarea className='w- full max-w-[500px] px-3 py-2' type="text" placeholder='Write content here' required/>
+      </div>
+
+      <div className='flex flex-col items-center sm:flex-row gap-2 w-full sm:gap-8'>
+        <div>
+          <p className='mb-2'>Product category</p>
+          <select className='w-full px-3 py-2'>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+            <option value="Kids">Kids</option>
+          </select>
+        </div>
+
+        <div>
+          <p className='mb-2'>Sub category</p>
+          <select className='w-full px-3 py-2'>
+            <option value="Topwear">Topwear</option>
+            <option value="Bottomwear">Bottomwear</option>
+            <option value="Winterwear">Winterwear</option>
+          </select>
+        </div>
+
+        <div>
+          <p>Product price</p>
+          <input type="number" placeholder='25' />
+        </div>
+      </div>
+
+      
     </form>
   )
 }
