@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets'
+import axios from 'axios';
+import { backendUrl } from '../App';
 
 const Add = ({token}) => {
 
@@ -15,6 +17,7 @@ const Add = ({token}) => {
   const [subcategory, setSubcategory] = useState('Topwear');
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
+ 
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -31,10 +34,14 @@ const Add = ({token}) => {
       formData.append('bestseller', bestseller);
       formData.append('sizes', JSON.stringify(sizes));
 
-      formData.append('image1', image1);
-      formData.append('image2', image2);
-      formData.append('image3', image3);
-      formData.append('image4', image4);
+      image1 && formData.append('image1', image1);
+      image2 && formData.append('image2', image2);
+      image3 && formData.append('image3', image3);
+      image4 && formData.append('image4', image4);
+
+      const response = await axios.post(backendUrl + '/api/product/add', formData, {headers: {token}});
+
+      console.log(response)
       
     } catch (error) {
       
