@@ -16,6 +16,31 @@ const Add = ({token}) => {
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('description', description);
+      formData.append('price', price);
+      formData.append('category', category);
+      formData.append('subCategory', subcategory);
+      formData.append('bestseller', bestseller);
+      formData.append('sizes', JSON.stringify(sizes));
+
+      formData.append('image1', image1);
+      formData.append('image2', image2);
+      formData.append('image3', image3);
+      formData.append('image4', image4);
+      
+    } catch (error) {
+      
+    }
+  }
+
 
   const addOrRemoveSize = (size) => {
     setSizes(prev => prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size]);
@@ -23,7 +48,7 @@ const Add = ({token}) => {
 
 
   return (
-    <form className='flex flex-col w-full items-start gap-3'>
+    <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
       <div>
         <p className='mb-2'>Upload Image</p>
         <div className='flex gap-2'>
@@ -88,29 +113,29 @@ const Add = ({token}) => {
         <p className='mb-2'>Product sizes</p>
         <div className='flex gap-3'>
           <div onClick={() => addOrRemoveSize('S')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('S') ? 'bg-pink-300' : 'bg-slate-200'}`}>S</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('S') ? 'bg-pink-200' : 'bg-slate-200'}`}>S</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('M')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('M') ? 'bg-pink-300' : 'bg-slate-200'}`}>M</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('M') ? 'bg-pink-200' : 'bg-slate-200'}`}>M</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('L')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('L') ? 'bg-pink-300' : 'bg-slate-200'}`}>L</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('L') ? 'bg-pink-200' : 'bg-slate-200'}`}>L</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('XL')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XL') ? 'bg-pink-300' : 'bg-slate-200'}`}>XL</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XL') ? 'bg-pink-200' : 'bg-slate-200'}`}>XL</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('XXL')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XXL') ? 'bg-pink-300' : 'bg-slate-200'}`}>XXL</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XXL') ? 'bg-pink-200' : 'bg-slate-200'}`}>XXL</p>
           </div>
         </div>
       </div>
 
       <div className='flex gap-2 mt-2'>
-        <input type="checkbox" id='bestseller'/>
+        <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller'/>
         <label className='cursor-pointer' htmlFor="bestseller">Add to bestseller</label>
       </div>
 
