@@ -90,9 +90,13 @@ const ShopContextProvider = ({children}) => {
       if(response.data.success){
         setProducts(response.data.products);
       }
+      else{
+        toast.error(response.data.message);
+      }
       
     } catch (error) {
-      
+      console.log(error);
+      toast.error(error.message);
     }
   }
 
