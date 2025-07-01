@@ -40,13 +40,14 @@ const List = ({token}) => {
       if(response.data.success) {
         toast.success(response.data.message);
         await fetchList();
+        
       } else {
         toast.error(response.data.message);
       }
 
     } catch (error) {
       console.log(error);
-      toast.error(error.message)
+      toast.error(error.message);
     }
 
   }
