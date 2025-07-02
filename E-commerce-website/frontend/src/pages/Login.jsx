@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Login() {
 
@@ -11,11 +13,28 @@ function Login() {
   const [password, setPassowrd] = useState('');
   const [email, setEmail] = useState('');
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     
     try {
-      
+
+      if(currentState === 'Sign Up'){
+
+        const response = await axios.post(backendUrl + '/api/user/register', {name, email, password});
+        
+        if(response.data.success) {
+          setToken(response.data.token);
+          localStorage.setItem('token', response.data.token);
+        } else {
+          toast.error(response.data.message);
+        }
+
+      } else {
+
+        const response = await axios.post(backendUrl + '/api/user/login', {email,password});
+        console.log(response.data);
+
+      }
       
 
     } catch (error) {
@@ -33,7 +52,7 @@ function Login() {
         <input onChange={(e) => setName(e.target.value)} type="text" className='w-full px-3 py-2 border border-gray-800' placeholder='Name' value={name} required/>
       : 
         null}
-      <input onChange={(e) => setPassowrd(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email' value={email} required/>
+      <input onChange={(e) => setEmail(e.target.value)} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email' value={email} required/>
       <input onChange={(e) => setPassowrd(e.target.value)} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password' value={password} required/>
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
         <p className='cursor-pointer'>Forgot your password?</p>
