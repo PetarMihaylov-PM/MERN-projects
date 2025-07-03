@@ -56,6 +56,18 @@ const updateCart = async (req, res) => {
 /* Get user cart data */
 const getUserCart = async (req, res) => {
 
+  try {
+    
+    const { userId } = req.body;
+
+    let cartData = await userData.cartData;
+
+    res.json({success: true, cartData: userData.cartData});
+
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: error.message});
+  }
 }
 
 
