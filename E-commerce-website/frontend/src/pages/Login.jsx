@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
-  const [currentState, setCurrentState] = useState('Sign Up');
+  const [currentState, setCurrentState] = useState('Login');
   
   const {token, setToken, navigate, backendUrl} = useContext(ShopContext);
 
