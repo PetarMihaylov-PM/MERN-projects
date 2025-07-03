@@ -39,9 +39,23 @@ const updateCart = async (req, res) => {
     const {userId, itemId, size, quantity} = req.body;
 
     const userData = await userModel.findById(userId);
-    let cartData = await userData.cartData;
+    let cartData = await {...userData.cartData};
 
-    cartData[itemId][size] = quantity;
+    if(quantity === 0) {
+      // Removing the size from the item
+      if(cartData[itemId] && cartData[itemId][size]){
+        delete cartData[itemId][size];
+
+        // If the item has no sizes left, removing the item
+        if(Object.keys(cartData[itemId]).length === 0) {
+          delete cartData[itemId];
+        }
+      }
+    } else {
+      // Updating or creating the quantity
+      if(!cartData[itemId]) cartData[itemId] = {};
+      cartData[itemId][size] = quantity;
+    }
 
     await userModel.findByIdAndUpdate(userId, {cartData});
     res.json({success: true, message: 'Cart Updated'});
