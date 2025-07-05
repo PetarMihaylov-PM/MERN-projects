@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Title from '../components/Title';
 import CartTotal from '../components/CartTotal';
 import { assets } from '../assets/frontend_assets/assets';
-import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { useContext } from 'react';
 import axios from 'axios';
@@ -55,7 +54,7 @@ function PlaceOrder() {
       }
 
       let orderData = {
-        address: FormData,
+        address: formData,
         items: orderItems,
         amount: getCartAmount() + delivery_fee
       }
@@ -64,10 +63,11 @@ function PlaceOrder() {
 
         // API Calls for COD
         case 'cod': 
-          const response = axios.post(backendUrl + '/api/order/place',orderData,{headers: {token}});
+          const response = await axios.post(backendUrl + '/api/orders/place',orderData,{headers: {token}});
+          console.log(response.data)
           if (response.data.success){
             setCartItems({});
-            navigate('/order');
+            navigate('/orders');
           } else {
             toast.error(response.data.message);
           }
