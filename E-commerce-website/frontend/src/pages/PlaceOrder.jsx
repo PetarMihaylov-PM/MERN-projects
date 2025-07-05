@@ -5,6 +5,8 @@ import { assets } from '../assets/frontend_assets/assets';
 import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { useContext } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function PlaceOrder() {
 
@@ -50,6 +52,29 @@ function PlaceOrder() {
             }
           }
         }
+      }
+
+      let orderData = {
+        address: FormData,
+        items: orderItems,
+        amount: getCartAmount() + delivery_fee
+      }
+
+      switch(method) {
+
+        // API Calls for COD
+        case 'cod': 
+          const response = axios.post(backendUrl + '/api/order/place',orderData,{headers: {token}});
+          if (response.data.success){
+            setCartItems({});
+            navigate('/order');
+          } else {
+            toast.error(response.data.message);
+          }
+          break;
+
+        default:
+          break
       }
 
     } catch (error) {
