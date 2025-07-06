@@ -24,13 +24,14 @@ function Orders() {
           order.items.map((item) => {
             item['status'] = order.status;
             item['payment'] = order.payment;
-            item['paymentMethod'] = order.method;
+            item['paymentMethod'] = order.paymentMethod;
             item['date'] = order.date;
             allOrdersItem.push(item);
           });
-        })
+        });
+        setOrderData(allOrdersItem.reverse());
       }
-
+      
     } catch (error) {
       
     }
@@ -58,19 +59,20 @@ function Orders() {
                     {item.name}
                   </p>
                   <div className='flex items-center gap-3 mt-2 text-base text-gray-700'> 
-                    <p className='text-lg'>{currency}{item.price}</p>
-                    <p>Quantity: 1</p>
-                    <p>Size: M</p>
+                    <p>{currency}{item.price}</p>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Size: {item.size}</p>
                   </div>
-                  <p className='mt-2'>Date: <span className='text-gray-400'>25, Jul, 2024</span></p>
+                  <p className='mt-1'>Date: <span className='text-gray-400'>{new Date(item.date).toDateString()}</span></p>
+                  <p className='mt-1'>Payment: <span className='text-gray-400'>{item.paymentMethod}</span></p>
                 </div>
               </div>
               <div className='md:w-1/2 flex justify-between items-center sm:justify-between sm: gap-4'>
                 <div className='flex items-center gap-2'>
                   <p className='w-2 h-2 rounded-full bg-green-500'></p>
-                  <p className='text-sm md:text-base'>Ready to ship</p>
+                  <p className='text-sm md:text-base'>{item.status}</p>
                 </div>
-                <button className='w-30 h-10 border text-sm font-medium rounded-sm cursor-pointer'>Track Order</button>
+                <button onClick={loadOrderData} className='w-30 h-10 border text-sm font-medium rounded-sm cursor-pointer'>Track Order</button>
               </div>
             </div>
           ))
