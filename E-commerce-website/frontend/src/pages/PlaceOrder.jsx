@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 function PlaceOrder() {
 
   const [method, setMethod] = useState('cod');
-  const { navigate, backendUrl, token, setCartItems, cartItems, getCartAmount, delivery_fee, products } = useContext(ShopContext);
+  const { navigate, backendUrl, token, setCartItems, cartItems, getCartAmount, deliveryFee, products } = useContext(ShopContext);
   
   const [formData, setFormData] = useState({
     firstName: '',
@@ -56,15 +56,14 @@ function PlaceOrder() {
       let orderData = {
         address: formData,
         items: orderItems,
-        amount: getCartAmount() + delivery_fee
+        amount: getCartAmount() + deliveryFee
       }
 
       switch(method) {
 
         // API Calls for COD
         case 'cod': 
-          const response = await axios.post(backendUrl + '/api/orders/place',orderData,{headers: {token}});
-          console.log(response.data)
+          const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers: {token}});
           if (response.data.success){
             setCartItems({});
             navigate('/orders');
