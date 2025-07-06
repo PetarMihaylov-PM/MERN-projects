@@ -64,6 +64,7 @@ function PlaceOrder() {
         // API Calls for COD
         case 'cod': 
           const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers: {token}});
+
           if (response.data.success){
             setCartItems({});
             navigate('/orders');
@@ -77,7 +78,8 @@ function PlaceOrder() {
       }
 
     } catch (error) {
-      
+      console.log(error);
+      toast.error(error.message);
     }
   }
   
