@@ -1,4 +1,3 @@
-import { currency } from '../../admin/src/App.jsx';
 import orderModel from '../models/orderModule.js';
 import userModel from '../models/userModule.js';
 import Stripe from 'stripe';
@@ -92,7 +91,7 @@ const placeOrderStripe = async(req, res) => {
       mode: 'payment'
     });
 
-    res.json({success:true, session_url:session_url})
+    res.json({success:true, session_url: session.url});
 
   } catch (error) {
     console.log(error);
