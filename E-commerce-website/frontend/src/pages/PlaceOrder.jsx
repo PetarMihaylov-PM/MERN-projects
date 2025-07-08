@@ -6,6 +6,7 @@ import { ShopContext } from '../context/ShopContext';
 import { useContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { currency } from '../../../admin/src/App';
 
 function PlaceOrder() {
 
@@ -30,6 +31,23 @@ function PlaceOrder() {
     const value = e.target.value;
     
     setFormData(prev => ({...prev,[name]:value}));
+  }
+
+
+  const initPay = (order) => {
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: order.currency,
+      name: 'Order Payment',
+      description: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        console.log(response);
+      }
+    }
+    const rzp = new window.RazorPay(options);
+    rzp.open();
   }
 
   const onSubmitHandler = async(e) => {
@@ -84,6 +102,16 @@ function PlaceOrder() {
           }
           break;
 
+        case 'razorpay':
+
+          const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}});
+
+          if(responseRazorpay.data.success){
+            initPay(responseRazorpay.data.order);
+          }
+
+          break;
+        
 
         default:
           break
