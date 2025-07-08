@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Verify = () => {
 
@@ -31,7 +32,8 @@ const Verify = () => {
       }
 
     } catch (error) {
-      
+      console.log(error);
+      toast.error(error.message);
     }
 
   }

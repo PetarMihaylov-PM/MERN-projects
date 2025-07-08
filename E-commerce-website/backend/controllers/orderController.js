@@ -1,6 +1,8 @@
 import orderModel from '../models/orderModule.js';
 import userModel from '../models/userModule.js';
 import Stripe from 'stripe';
+import razorpay from 'razorpay';
+import { json } from 'express';
 
 // global variables
 const currency = 'usd';
@@ -8,6 +10,11 @@ const deliveryCharges = 10;
 
 // gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+const razorpayInstance = new razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_SECRET_KEY
+});
 
 // Placing orders using COD
 const placeOrder = async(req, res) => {
@@ -129,10 +136,39 @@ const placeOrderRazorpay = async(req, res) => {
   
   try {
     
-    
+    const {userId, items, amount, address} = req.body;
+
+    const orderData = {
+      userId,
+      items,
+      address,
+      amount,
+      paymentMethod: 'Razorpay',
+      payment: false,
+      date: Date.now()
+    }
+
+    const newOrder = new orderModel(orderData);
+    await newOrder.save();
+
+    const options = {
+      amount: amount * 100,
+      currency: currency.toUpperCase(),
+      receipt: newOrder._id.toString()
+    }
+
+    await razorpayInstance.orders.create(options, (error, order) => {
+      if(error){
+        console.log(error);
+        return res.json({success: false, message: error});
+      }
+
+      res.json({success:true, order});
+    })
 
   } catch (error) {
-    
+    console.log(error);
+    res.json({success: false, message: error.message});
   }
 
 }
