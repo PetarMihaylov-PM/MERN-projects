@@ -44,6 +44,19 @@ function PlaceOrder() {
       receipt: order.receipt,
       handler: async (response) => {
         console.log(response);
+        try {
+          
+          const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay',response,{headers:{token}});
+
+          if(data.success){
+            navigate('/orders');
+            setCartItems({});
+          }
+          
+        } catch (error) {
+          console.log(error);
+          toast.error(error);
+        }
       }
     }
     const rzp = new window.RazorPay(options);
@@ -109,7 +122,6 @@ function PlaceOrder() {
           if(responseRazorpay.data.success){
             initPay(responseRazorpay.data.order);
           }
-
           break;
         
 
