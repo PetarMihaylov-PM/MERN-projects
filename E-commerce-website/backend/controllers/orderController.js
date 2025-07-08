@@ -4,7 +4,8 @@ import userModel from '../models/userModule.js';
 import Stripe from 'stripe';
 
 // global variables
-const currency = 'usd'
+const currency = 'usd';
+const deliveryCharges = 10;
 
 // gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -79,13 +80,23 @@ const placeOrderStripe = async(req, res) => {
         product_data: {
           name: 'Delivery Charges'
         },
-        unit_amount: item.price * 100
+        unit_amount: deliveryCharges * 100
       },
-      quantity: item.quantity
-    })
+      quantity: 1
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
+      cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
+      line_items,
+      mode: 'payment'
+    });
+
+    res.json({success:true, session_url:session_url})
 
   } catch (error) {
-    
+    console.log(error);
+    res.json({success: false, message: error.message});
   }
 
 }
