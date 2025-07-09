@@ -15,7 +15,7 @@ function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setImageIndex(prevIndex => (prevIndex + 1) % heroImages.length);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   },[])
@@ -43,7 +43,18 @@ function Hero() {
       </section>
 
       {/* Hero right side */}
-      <img src={heroImages[imageIndex]} className='w-full sm:w-1/2 transition-opacity duration-500 ease-in-out ' alt='hero-img' />
+      <div className='relative w-full sm:w-1/2 aspect-[4/3] sm:min-h-[400px] overflow-hidden'>
+        {heroImages.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt='hero-img'
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+              index === imageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          />
+        ))}
+      </div>
     </div>
   )
 }
