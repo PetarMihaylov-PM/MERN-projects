@@ -5,10 +5,10 @@ import { useLocation } from 'react-router-dom';
 
 function SearchBar() {
 
-  const { search, setSearch, showSearch, setShowSearch } = useContext(ShopContext);
+  const { search, setSearch, showSearch, setShowSearch, navigate } = useContext(ShopContext);
   const location = useLocation();
   const isOnCollectionPage= location.pathname === '/collection' ? true : false;
-
+  
   
 
   return showSearch && isOnCollectionPage ? (

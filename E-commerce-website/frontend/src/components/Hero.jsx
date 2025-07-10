@@ -27,7 +27,7 @@ function Hero() {
       <section className='w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0'>
         <div className='text-[#414141]'>
           <div className='flex items-center gap-2'>
-            <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
+            <div className='w-8 md:w-11 h-[2px] bg-[#414141]' aria-hidden="true"></div>
             <p className='font-medium test-sm md:text-base'>
               OUR BESTSELLERS
             </p>
@@ -37,7 +37,7 @@ function Hero() {
           </h1>
           <div className='flex items-center gap-2'>
             <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
-            <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
+            <div className='w-8 md:w-11 h-[2px] bg-[#414141] ' aria-hidden="true"></div>
           </div>
         </div>
       </section>
@@ -55,15 +55,15 @@ function Hero() {
           />
         ))}
         <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2'>
-        {heroImages.map((_,index) => (
-          <button 
-            key={index}
-            onClick={() => setImageIndex(index)}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${index === imageIndex ? 'bg-black scale-125' : 'bg-gray-300'}`}
-          />
-        ))
-        }
-      </div>
+          {heroImages.map((_,index) => (
+            <button 
+              key={index}
+              onClick={() => setImageIndex(index)}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${index === imageIndex ? 'bg-black scale-125' : 'bg-gray-300'}`}
+            />
+          ))
+          }
+        </div>
       </div>
       
     </div>

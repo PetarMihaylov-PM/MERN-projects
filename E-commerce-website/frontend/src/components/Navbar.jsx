@@ -5,13 +5,21 @@ import { ShopContext } from '../context/ShopContext';
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch, getCartCount, navigate, setToken, token, setCartItems } = useContext(ShopContext);
+  const { setShowSearch, showSearch, getCartCount, navigate, setToken, token, setCartItems } = useContext(ShopContext);
 
   const logOut = () => {
     localStorage.removeItem('token');
     setToken('');
     setCartItems({});
     navigate('/login');
+  }
+
+  const handleSearchClick = () => {
+    setShowSearch(prev => !prev);
+
+    if(!showSearch){
+      navigate('/collection');
+    }
   }
 
   return (
@@ -43,7 +51,7 @@ function Navbar() {
 
       <div className='flex items-center gap-6'>
 
-        <img onClick={() => setShowSearch(prev => !prev)} src={assets.search_icon} alt="search-icon" className='w-5 cursor-pointer'/>
+        <img onClick={handleSearchClick} src={assets.search_icon} alt="search-icon" className='w-5 cursor-pointer'/>
         
         <div className='group relative'>
           
