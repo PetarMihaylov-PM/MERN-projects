@@ -7,7 +7,7 @@ function Footer() {
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
         
         <div>
-          <img src={assets.logo} className='mb-5 w-32' alt='logo-icon' />
+          <img src={assets.logo2} className='mb-5 w-32' alt='logo-icon' />
           <p className='w-full md:w-2/3 text-gray-600 '>
             Timeless Style. <br /> Everyday Value. <br /> Crafted to Inspire
           </p>
@@ -27,7 +27,7 @@ function Footer() {
           <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
           <ul className='flex flex-col gap-1 text-gray-600'>
             <li>+ 1-123-456-7890</li>
-            <li>contact.forever@gmail.com</li>
+            <li>contact.trendora@gmail.com</li>
           </ul>
         </div>
 
@@ -37,7 +37,7 @@ function Footer() {
         <hr />
         <p className='py-5 text-sm text-center'> 
           Designed with love for modern shoppers. <br />
-          © 2025 FOREVER. All rights reserved.
+          © 2025 TRENDORA. All rights reserved.
         </p>
       </div>
     </div>
