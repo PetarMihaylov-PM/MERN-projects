@@ -50,11 +50,22 @@ function Hero() {
             src={img}
             alt='hero-img'
             className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-              index === imageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              index === imageIndex ? 'opacity-100' : 'opacity-0 z-0'
             }`}
           />
         ))}
+        <div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2'>
+        {heroImages.map((_,index) => (
+          <button 
+            key={index}
+            onClick={() => setImageIndex(index)}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${index === imageIndex ? 'bg-black scale-125' : 'bg-gray-300'}`}
+          />
+        ))
+        }
       </div>
+      </div>
+      
     </div>
   )
 }
