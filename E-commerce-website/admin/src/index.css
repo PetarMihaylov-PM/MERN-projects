@@ -9,11 +9,11 @@
 
 select, input, textarea {
   border: 1px solid #c2c2c2;
-  outline-color: #c586a5;
+  outline-color: orange;
   border-radius: 4px;
 }
 
 .active {
-  background-color: #ffebf5;
-  border-color: #c586a5;
+  background-color: rgba(253, 205, 149, 0.379);
+  border-color: orange;
 }

@@ -133,23 +133,23 @@ const Add = ({token}) => {
         <p className='mb-2'>Product sizes</p>
         <div className='flex gap-3'>
           <div onClick={() => addOrRemoveSize('S')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('S') ? 'bg-pink-200' : 'bg-slate-200'}`}>S</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('S') ? 'bg-orange-200' : 'bg-slate-200'}`}>S</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('M')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('M') ? 'bg-pink-200' : 'bg-slate-200'}`}>M</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('M') ? 'bg-orange-200' : 'bg-slate-200'}`}>M</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('L')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('L') ? 'bg-pink-200' : 'bg-slate-200'}`}>L</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('L') ? 'bg-orange-200' : 'bg-slate-200'}`}>L</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('XL')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XL') ? 'bg-pink-200' : 'bg-slate-200'}`}>XL</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XL') ? 'bg-orange-200' : 'bg-slate-200'}`}>XL</p>
           </div>
 
           <div onClick={() => addOrRemoveSize('XXL')}>
-            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XXL') ? 'bg-pink-200' : 'bg-slate-200'}`}>XXL</p>
+            <p className={`px-3 py-1 cursor-pointer ${sizes.includes('XXL') ? 'bg-orange-200' : 'bg-slate-200'}`}>XXL</p>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@ const Add = ({token}) => {
         <label className='cursor-pointer' htmlFor="bestseller">Add to bestseller</label>
       </div>
 
-      <button className='w-28 py-3 mt-4 bg-black text-white cursor-pointer' type='submit'>ADD</button>
+      <button className='w-28 py-2 mt-4 bg-orange-300 text-white cursor-pointer rounded-sm' type='submit'>ADD</button>
     </form>
   )
 }
