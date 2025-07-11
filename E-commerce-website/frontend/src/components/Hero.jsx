@@ -18,7 +18,7 @@ function Hero() {
     }, 4000);
 
     return () => clearInterval(interval);
-  },[imageIndex])
+  },[imageIndex]);
 
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400'>
@@ -65,7 +65,6 @@ function Hero() {
           }
         </div>
       </div>
-      
     </div>
   )
 }
