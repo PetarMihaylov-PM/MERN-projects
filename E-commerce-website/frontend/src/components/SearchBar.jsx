@@ -9,7 +9,6 @@ function SearchBar() {
   const location = useLocation();
   const isOnCollectionPage= location.pathname === '/collection' ? true : false;
   
-  
 
   return showSearch && isOnCollectionPage ? (
     <div className='border-t bg-gray-50 text-center'>

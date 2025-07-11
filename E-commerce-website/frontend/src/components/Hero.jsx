@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { assets } from '../assets/frontend_assets/assets'
 
 function Hero() {
@@ -18,7 +18,7 @@ function Hero() {
     }, 4000);
 
     return () => clearInterval(interval);
-  },[])
+  },[imageIndex])
 
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400'>
