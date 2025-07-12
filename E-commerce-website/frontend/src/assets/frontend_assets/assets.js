@@ -83,6 +83,8 @@ import process_icon from './processing.png'
 import payment_icon from './payment.png'
 import delivered_icon from './delivered.png'
 import user_icon from './user.png'
+import clothing_bg from './clothing.jpg'
+import clothing2_bg from './clothing2.jpg'
 
 export const assets = {
     logo,
@@ -112,7 +114,9 @@ export const assets = {
     process_icon,
     payment_icon,
     delivered_icon,
-    user_icon
+    user_icon,
+    clothing_bg,
+    clothing2_bg,
 }
 
 export const products = [
