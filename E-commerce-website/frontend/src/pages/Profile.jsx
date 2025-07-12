@@ -37,7 +37,7 @@ function Profile() {
   if (!user) return <p>Loading...</p>
 
   return (
-    <div class="flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-md xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+    <div class="flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-md xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl/15 rounded-lg text-gray-900">
 
       {/* Background img */}
       <div class="flex relative rounded-t-lg w-full h-40 overflow-hidden">
@@ -46,8 +46,8 @@ function Profile() {
 
 
       {/* Profile img */}
-      <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-          <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front' />
+      <div class="mx-auto w-33 h-32 relative -mt-16 border-2 border-white rounded-full overflow-hidden">
+          <img class="object-cover object-center" src={assets.user_icon}/>
       </div>
 
 
@@ -77,7 +77,7 @@ function Profile() {
 
           <li class="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
               <img class="w-6 fill-current text-blue-900" src={assets.payment_icon} />
-              <div>Payed</div>
+              <div>Paid</div>
           </li>
       </ul>
 

@@ -132,4 +132,25 @@ const adminLogin = async(req, res) => {
     }
   }
 
-export { registerUser, loginUser, adminLogin, getUserProfile }
+
+  // Route for updating the profile img
+  const updateProfileImage = async (req, res) => {
+    try {
+      
+      const { userId, profileImg } = req.body;
+
+      const user = await userModel.findByIdAndUpdate (userId, { profileImg}, { new: true});
+
+      if(!user) {
+        return res.json({success: false, message: 'User not found'});
+      }
+
+      res.json({ success: true, user });
+
+    } catch (error) {
+      console.log(error);
+      res.json({success: false, message: error.message});
+    }
+  }
+
+export { registerUser, loginUser, adminLogin, getUserProfile, updateProfileImage }
