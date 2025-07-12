@@ -37,7 +37,7 @@ function Profile() {
   if (!user) return <p>Loading...</p>
 
   return (
-    <div class="flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
+    <div class="flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-md xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
 
       {/* Background img */}
       <div class="flex relative rounded-t-lg w-full h-40 overflow-hidden">
@@ -59,31 +59,31 @@ function Profile() {
 
 
       {/* Buttons for orders checking */}
-      <ul class="py-4 mt-2 text-gray-700 grid grid-cols-2 place-items-center gap-y-5 w-[80%]">
-          <li class="flex flex-col items-center justify-around">
-              <img class="w-4 fill-current text-blue-900" src={assets.delivered_icon} />
+      <ul class="py-4 mt-2 text-gray-700 grid grid-cols-2 place-items-center gap-y-8 w-[80%]">
+          <li class="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+              <img class="w-6 fill-current text-blue-900" src={assets.delivered_icon} />
               <div>Delivered</div>
           </li>
 
-          <li class="flex flex-col items-center justify-around px-3 py-1 border border-gray-300 rounded">
-              <img class="w-4 fill-current text-blue-900" src={assets.shipped_icon} />
+          <li class="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+              <img class="w-6 fill-current text-blue-900" src={assets.shipped_icon} />
               <div>Shipped</div>
           </li>
 
-          <li class="flex flex-col items-center justify-around w-20">
-              <img class="w-4 fill-current text-blue-900" src={assets.process_icon} />
+          <li class="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+              <img class="w-6 fill-current text-blue-900" src={assets.process_icon} />
               <div>Processed</div>
           </li>
 
-          <li class="flex flex-col items-center justify-around w-20">
-              <img class="w-4 fill-current text-blue-900" src={assets.payment_icon} />
+          <li class="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+              <img class="w-6 fill-current text-blue-900" src={assets.payment_icon} />
               <div>Payed</div>
           </li>
       </ul>
 
       {/* Change password option */}
-      <div class="p-4 border-t mx-8 mt-2">
-          <button class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
+      <div class="p-4 border-t mx-8 mt-5 w-[80%]">
+          <button class="w-[60%] py-2 block text-sm mx-auto rounded-full border bg-gray-900 hover:bg-white hover:text-black hover:border font-semibold text-white px-6 transition-all ease-in-out cursor-pointer">Change Password</button>
       </div>
   </div>
   )
