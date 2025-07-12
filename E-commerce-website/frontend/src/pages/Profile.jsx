@@ -8,6 +8,27 @@ import Title from '../components/Title.jsx'
 function Profile() {
 
   const [user, setUser] = useState(null);
+  const [imageInput, setImageInput] = useState('');
+
+  const handleImageUpdate = async () => {
+    try {
+      
+      const token = localStorage.getItem('token');
+
+      const response = await axios.post(backendUrl + '/api/profile/update-image', {profileImg: imageInput}, {headers: {token}});
+
+      if(response.data.success){
+        toast.success('Profile image updated!');
+        setUser(response.data.user);
+      } else {
+        toast.error(response.data.message);
+      }
+
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message);
+    }
+  }
 
   useEffect(() => {
 
@@ -47,8 +68,10 @@ function Profile() {
 
       {/* Profile img */}
       <div class="mx-auto w-33 h-32 relative -mt-16 border-2 border-white rounded-full overflow-hidden">
-          <img class="object-cover object-center" src={assets.user_icon}/>
+          <img class="object-cover object-center" src={user.profileImg ||assets.user_icon} alt='User'/>
       </div>
+
+      
 
 
       {/* Profile name and email */}
