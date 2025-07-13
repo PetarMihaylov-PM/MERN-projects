@@ -4,7 +4,7 @@ The site includes features like product browsing, shopping cart, user authentica
 MongoDB, Express, React, and Node.js — along with Tailwind CSS for 
 styling and Vite for fast development and build performance.
 
-![trendora1](https://github.com/user-attachments/assets/bdd6e776-2206-4b74-af9a-c635c46f831d)
+![trendora1](https://github.com/user-attachments/assets/23ea878b-c28f-4348-9276-fb48e8c79066)
 
 ![trendora2](https://github.com/user-attachments/assets/d7b1d4c7-c235-4580-9cc3-5a23a5707bba)
 
