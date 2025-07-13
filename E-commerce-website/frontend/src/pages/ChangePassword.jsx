@@ -1,15 +1,49 @@
-import React from 'react'
+import { useContext, useState } from 'react';
+import Title from '../components/Title';
+import { ShopContext } from '../context/ShopContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ChangePassword = () => {
+
+  const [email, setEmail] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const { navigate, backendUrl } = useContext(ShopContext);
+
+  
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    
+    if(newPassword !== confirmPassword){
+      setMessage("Password do not match.");
+      return;
+    }
+
+    try {
+
+      const response = await axios.post(backendUrl + '/api/profile/change-password', {email, newPassword});
+
+      setMessage(response.data.message);
+      
+    } catch (error) {
+      console.log(error);
+      setMessage('Something went wrong.');
+    }
+  }
+
   return (
-        <div className="w-full p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md sm:p-8">
+    <div className='flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-md xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl/15 rounded-lg text-gray-900 border-1 border-gray-300'>
+        <div className="w-full p-6 bg-white rounded-lg ">
           <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Change Password
+              {<Title text1={'Change'} text2={'Password'}/>}
           </h2>
-          <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
+          <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={handleSubmit}>
               <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required/>
+                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="trendora@example.com" required/>
               </div>
               <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
@@ -27,9 +61,10 @@ const ChangePassword = () => {
                     <label htmlFor="newsletter" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                   </div>
               </div>
-              <button type="submit" className="w-full bg-black text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reset passwod</button>
+              <button type="submit" className="w-full bg-black text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer hover:bg-gray-800 transition-all ease-in-out">Reset passwod</button>
           </form>
-      </div>
+        </div>
+    </div>
   )
 }
 

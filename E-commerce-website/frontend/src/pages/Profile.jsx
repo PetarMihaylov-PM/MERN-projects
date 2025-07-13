@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { backendUrl } from '../../../admin/src/App';
 import { toast } from 'react-toastify';
 import { assets } from '../assets/frontend_assets/assets.js';
 import { ShopContext } from '../context/ShopContext.jsx';
@@ -10,7 +9,7 @@ function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   
-  const { navigate } = useContext(ShopContext);
+  const { navigate, backendUrl } = useContext(ShopContext);
 
   const handleImageUpdate = async (imageFile) => {
     
