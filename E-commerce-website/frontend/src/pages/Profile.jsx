@@ -89,8 +89,14 @@ function Profile() {
 
 
       {/* Profile img */}
-      <div className="flex mx-auto w-33 h-32 relative -mt-16 border-2 border-white rounded-full">
-          {!loading ? <img className="object-cover object-center rounded-full" src={user?.profileImg || assets.user_icon} alt='user-img'/>
+      <div className="flex relative mx-auto w-33 h-32 -mt-16 border-2 border-white rounded-full">
+          {!loading ? 
+          <div className='flex items-center object-cover w-full h-full'>
+            <img className="w-full h-full object-cover object-center rounded-full" src={user?.profileImg?.url || assets.user_icon} alt='user-img'/>
+            <div className='bg-gray-300/50 absolute bottom-0 right-3 w-7 p-1 rounded-full'>
+              <img className='' src={assets.add_img_icon} alt="add-img-icon" />
+            </div>
+          </div>
            :  
           <div className="w-full h-full flex items-center justify-center bg-white/70 rounded-full">
             <div className="animate-spin rounded-full h-10 w-10 border-4 border-orange-500 border-t-transparent"></div>

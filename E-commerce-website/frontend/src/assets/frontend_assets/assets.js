@@ -85,6 +85,7 @@ import delivered_icon from './delivered.png'
 import user_icon from './user.png'
 import clothing_bg from './clothing.jpg'
 import clothing2_bg from './clothing2.jpg'
+import add_img_icon from './add-img-icon.png'
 
 export const assets = {
     logo,
@@ -117,6 +118,7 @@ export const assets = {
     user_icon,
     clothing_bg,
     clothing2_bg,
+    add_img_icon
 }
 
 export const products = [

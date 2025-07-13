@@ -146,17 +146,30 @@ const adminLogin = async(req, res) => {
         return res.json({success: false, message: 'No image provided'});
       }
 
+      const user = await userModel.findById(userId);
+
+      if(!user) {
+        return res.json({ success: false, message: 'User not found' });
+      }
+
+      if(user.profileImg?.public_id) {
+        await cloudinary.uploader.destroy(user.profileImg.public_id);
+      }
+
       const result = await cloudinary.uploader.upload(image.path, {
         resource_type: 'image',
         folder: 'user_profiles',
       });
 
-      const updatedUser = await userModel.findByIdAndUpdate(userId, 
-        { profileImg: result.secure_url},
-        { new: true }
-      );
 
-      res.json({ success: true, updatedUser });
+      user.profileImg = {
+        url: result.secure_url,
+        public_id: result.public_id,
+      };
+
+      await user.save();
+
+      res.json({ success: true, user });
 
     } catch (error) {
       console.log(error);
