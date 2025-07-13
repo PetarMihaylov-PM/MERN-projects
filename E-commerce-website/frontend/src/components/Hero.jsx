@@ -28,15 +28,15 @@ function Hero() {
         <div className='text-[#414141]'>
           <div className='flex items-center gap-2'>
             <div className='w-8 md:w-11 h-[2px] bg-[#414141]' aria-hidden="true"></div>
-            <p className='font-medium test-sm md:text-base'>
-              OUR BESTSELLERS
+            <p className='font-medium text-sm md:text-base'>
+              MOST WANTED
             </p>
           </div>
           <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>
-            Latest Arrivals
+            Just Dropped
           </h1>
           <div className='flex items-center gap-2'>
-            <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
+            <p className='font-semibold text-sm md:text-base'>EXPLORE NOW</p>
             <div className='w-8 md:w-11 h-[2px] bg-[#414141] ' aria-hidden="true"></div>
           </div>
         </div>
