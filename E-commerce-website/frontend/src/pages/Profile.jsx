@@ -67,11 +67,12 @@ function Profile() {
 
 
       {/* Profile img */}
-      <div class="mx-auto w-33 h-32 relative -mt-16 border-2 border-white rounded-full overflow-hidden">
+      <div class="flex mx-auto w-33 h-32 relative -mt-16 border-2 border-white rounded-full">
           <img class="object-cover object-center" src={user.profileImg ||assets.user_icon} alt='User'/>
+          <input onChange={(e) => setImageInput(e.target.files[0])} type="file" className='absolute w-full h-full rounded-full cursor-pointer opacity-0'/>
       </div>
 
-      
+    
 
 
       {/* Profile name and email */}

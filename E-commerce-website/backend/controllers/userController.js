@@ -2,6 +2,7 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModule.js';
+import { v2 as cloudinary } from 'cloudinary';
 
 
 const createToken = (id) => {
@@ -137,15 +138,25 @@ const adminLogin = async(req, res) => {
   const updateProfileImage = async (req, res) => {
     try {
       
-      const { userId, profileImg } = req.body;
+      const { userId } = req.body;
 
-      const user = await userModel.findByIdAndUpdate (userId, { profileImg}, { new: true});
+      const image = req.files?.image?.[0];
 
-      if(!user) {
-        return res.json({success: false, message: 'User not found'});
+      if(!image) {
+        return res.json({success: false, message: 'No image provided'});
       }
 
-      res.json({ success: true, user });
+      const result = await cloudinary.uploader.upload(image.path, {
+        resource_type: 'image',
+        folder: 'user_profiles',
+      });
+
+      const updatedUser = await userModel.findByIdAndUpdate(userId, 
+        { profileImg: result.secure_url},
+        { new: true }
+      );
+
+      res.json({ success: true, updatedUser });
 
     } catch (error) {
       console.log(error);
