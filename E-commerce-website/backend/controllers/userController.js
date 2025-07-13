@@ -1,5 +1,5 @@
 import validator from 'validator';
-import bcrypt from 'bcrypt';
+import bcrypt, { genSalt } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModule.js';
 import { v2 as cloudinary } from 'cloudinary';
@@ -177,4 +177,35 @@ const adminLogin = async(req, res) => {
     }
   }
 
-export { registerUser, loginUser, adminLogin, getUserProfile, updateProfileImage }
+
+  // Route for user password change
+  const changeUserPassword = async(req, res) => {
+    try {
+      
+      const { userId, newPassword } = req.body;
+
+      if(!newPassword || newPassword < 8){
+        res.json({success: false, message: 'Password must be at least 8 characters long.'});
+      }
+
+      const user = await userModel.findById(userId);
+
+      if(!user) {
+        res.json({success: false, message: 'User not found.'});
+      }
+
+      const salt = await genSalt(10);
+      const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+      user.password = hashedPassword;
+      await user.save();
+
+      res.json({success: true, message: 'Password updated successfully'});
+
+    } catch (error) {
+      console.log(error);
+      res.json({success: false, message: error.message});
+    }
+  }
+
+export { registerUser, loginUser, adminLogin, getUserProfile, updateProfileImage, changeUserPassword }

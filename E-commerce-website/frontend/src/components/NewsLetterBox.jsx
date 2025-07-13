@@ -19,7 +19,7 @@ function NewsLetterBox() {
       </p>
       <form onSubmit={onSubmitHandler} className='w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border-1 border-gray-300 rounded-sm'>
         <input onChange={(e) => setSubscribeInput(e.target.value)} className='w-full sm:flex-1 outline-none px-1' type="email" placeholder='Enter your email' value={subscribeInput} required/>
-        <button className='bg-orange-400 text-white text-base px-10 py-3 rounded-sm cursor-pointer hover:opacity-80' type='submit'>
+        <button className='bg-[#ffab34] text-white text-base px-10 py-3 rounded-sm cursor-pointer hover:opacity-80' type='submit'>
           Subscribe
         </button>
       </form>
