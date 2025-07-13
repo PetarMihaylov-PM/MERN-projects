@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -13,9 +14,10 @@ import Product from './pages/Product';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
-import { ToastContainer, toast } from 'react-toastify';
 import Verify from './pages/Verify';
 import Profile from './pages/Profile';
+import ChangePassword from './pages/ChangePassword';
+
 
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
         <Route path='/orders' element={<Orders />}/>
         <Route path='/verify' element={<Verify />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/changepassword' element={<ChangePassword />}/>
       </Routes>
       <Footer />
     </div>

@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { backendUrl } from '../../../admin/src/App';
 import { toast } from 'react-toastify';
 import { assets } from '../assets/frontend_assets/assets.js';
+import { ShopContext } from '../context/ShopContext.jsx';
 
 function Profile() {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  
+  const { navigate } = useContext(ShopContext);
 
   const handleImageUpdate = async (imageFile) => {
     
@@ -112,8 +115,6 @@ function Profile() {
           } />
       </div>
 
-    
-
 
       {/* Profile name and email */}
       <div className="text-center mt-2">
@@ -147,7 +148,9 @@ function Profile() {
 
       {/* Change password option */}
       <div className="p-4 border-t mx-8 mt-5 w-[80%]">
-          <button className="w-[60%] py-2 block text-sm mx-auto rounded-full border bg-gray-900 hover:bg-white hover:text-black hover:border font-semibold text-white px-6 transition-all ease-in-out cursor-pointer">Change Password</button>
+          <button className="w-[60%] py-2 block text-sm mx-auto rounded-full border bg-gray-900 hover:bg-white hover:text-black hover:border font-semibold text-white px-6 transition-all ease-in-out cursor-pointer"
+            onClick={() => navigate('/changepassword')}
+          >Change Password</button>
       </div>
   </div>
   )
