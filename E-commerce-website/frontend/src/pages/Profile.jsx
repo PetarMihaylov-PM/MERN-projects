@@ -11,8 +11,9 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState(null);
+  const [orderData, setOrderData] = useState([]);
   
-  const { navigate, backendUrl } = useContext(ShopContext);
+  const { navigate, backendUrl, token, currency } = useContext(ShopContext);
 
   const handleImageUpdate = async (imageFile) => {
     
@@ -71,29 +72,44 @@ function Profile() {
       }
   };
 
-  const fetchUserOrders = async(status = null) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(backendUrl + '/api/order/user-orders',
-        { status },
-        { headers: { token } }
-      );
 
-      if (response.data.success) {
-        setOrders(response.data.orders);
-      } else {
-        toast.error(response.data.message);
+  const loadOrderData = async() => {
+    try {
+      
+      if(!token) {
+        return null;
       }
+
+      const response = await axios.post(backendUrl + '/api/order/userorders',{},{headers:{token}});
+      
+      if(response.data.success) {
+        let allOrdersItem = [];
+        response.data.orders.map((order) => {
+          order.items.map((item) => {
+            item['status'] = order.status;
+            item['payment'] = order.payment;
+            item['paymentMethod'] = order.paymentMethod;
+            item['date'] = order.date;
+            allOrdersItem.push(item);
+          });
+        });
+        setOrderData(allOrdersItem.reverse());
+      }
+      
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
-  };
+  }
+
 
   useEffect(() => {
     fetchUserProfile();
+    loadOrderData();
   }, []);
   console.log(user);
+  console.log(orderData);
+
 
   return (
     <div>
@@ -188,7 +204,7 @@ function Profile() {
                     <p><strong>Amount:</strong> ${order.amount}</p>
                     <p><strong>Payment:</strong> {order.payment ? 'Paid' : 'Unpaid'}</p>
                     <p><strong>Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
-                    {/* Optionally list items */}
+                    
                     <ul className="mt-2 text-sm text-gray-700">
                       {order.items.map((item, index) => (
                         <li key={index}>• {item.name} (x{item.quantity})</li>
@@ -200,7 +216,7 @@ function Profile() {
             </div>
         </div>
       }  
-  </div>
+    </div>
   )
 }
 
