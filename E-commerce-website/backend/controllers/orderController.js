@@ -2,8 +2,6 @@ import orderModel from '../models/orderModule.js';
 import userModel from '../models/userModule.js';
 import Stripe from 'stripe';
 import razorpay from 'razorpay';
-import { json } from 'express';
-import orderRouter from '../routes/orderRoute.js';
 
 // global variables
 const currency = 'usd';
@@ -221,9 +219,13 @@ const userOrders = async(req, res) => {
   
   try {
     
-    const {userId} = req.body;
+    const {userId, status} = req.body;
 
-    const orders = await orderModel.find({ userId });
+    const filter = { userId };
+    if(status) filter.status = status;
+
+
+    const orders = await orderModel.find(filter);
     res.json({success: true, orders});
 
   } catch (error) {
