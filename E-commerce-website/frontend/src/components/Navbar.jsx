@@ -7,8 +7,7 @@ import { toast } from 'react-toastify';
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
-  const [user, setUser] = useState('');
-  const { setShowSearch, showSearch, getCartCount, navigate, setToken, token, setCartItems, backendUrl } = useContext(ShopContext);
+  const { setShowSearch, showSearch, getCartCount, navigate, setToken, token, setCartItems, fetchUserProfile, user } = useContext(ShopContext);
 
   const logOut = () => {
     localStorage.removeItem('token');
@@ -25,27 +24,8 @@ function Navbar() {
     }
   }
 
-  const fetchUserData = async() => {
-    if(!token){
-      return;
-    }
-
-    try {
-      
-      const response = await axios.post(backendUrl + '/api/user/profile', {}, {headers: {token}});
-
-      if(response.data.success){
-        setUser(response.data.user);
-      }
-
-    } catch (error) {
-      console.log('Failed to get user profile', error.message);
-      toast.error(error.message);
-    }
-  }
-
   useEffect(() => {
-    fetchUserData();
+    fetchUserProfile();
   },[token]);
 
 

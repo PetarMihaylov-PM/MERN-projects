@@ -7,12 +7,12 @@ import Title from '../components/Title.jsx';
 
 function Profile() {
 
-  const [user, setUser] = useState(null);
+  
   const [loading, setLoading] = useState(false);
   const [orderData, setOrderData] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   
-  const { navigate, backendUrl, token, currency } = useContext(ShopContext);
+  const { navigate, backendUrl, token, currency, fetchUserProfile, user } = useContext(ShopContext);
 
   const handleImageUpdate = async (imageFile) => {
     
@@ -51,26 +51,6 @@ function Profile() {
       setLoading(false);
     }
   };
-
-  const fetchUserProfile = async () => {
-      try {
-
-        const token = localStorage.getItem('token');
-        const response = await axios.post(backendUrl + '/api/user/profile', {}, { headers: { token } });
-
-        if (response.data.success) {
-          setUser(response.data.user);
-        } else {
-          console.log(response.data.message)
-          toast.error(response.data.message);
-        }
-
-      } catch (error) {
-        console.log(error);
-        toast.error(error.message);
-      }
-  };
-
 
   const loadOrderData = async() => {
     try {
