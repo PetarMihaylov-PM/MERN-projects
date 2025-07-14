@@ -9,9 +9,8 @@ function Profile() {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [orders, setOrders] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState(null);
   const [orderData, setOrderData] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
   
   const { navigate, backendUrl, token, currency } = useContext(ShopContext);
 
@@ -102,13 +101,25 @@ function Profile() {
     }
   }
 
+  const filterOrderData = (orderStatus) => {
+    const filtered = [];
+    orderData.forEach(order => {
+      if(order.status === orderStatus){
+        filtered.push(order);
+      }
+    });
+    setFilteredOrders(filtered);
+  }
+
 
   useEffect(() => {
     fetchUserProfile();
     loadOrderData();
-  }, []);
+  }, [token]);
+
   console.log(user);
   console.log(orderData);
+  console.log(filteredOrders);
 
 
   return (
@@ -137,7 +148,7 @@ function Profile() {
                 <div className='flex items-center object-cover w-full h-full'>
                   <img className="w-full h-full object-cover object-center rounded-full" src={user?.profileImg?.url || assets.user_icon} alt='user-img'/>
                   <div className='bg-gray-300/50 absolute bottom-0 right-3 w-7 p-1 rounded-full'>
-                    <img className='' src={assets.add_img_icon} alt="add-img-icon" />
+                    <img src={assets.add_img_icon} alt="add-img-icon" />
                   </div>
                 </div>
                 :  
@@ -165,22 +176,22 @@ function Profile() {
 
             {/* Buttons for orders checking */}
             <ul className="py-4 mt-2 text-gray-700 grid grid-cols-2 place-items-center gap-y-8 w-[80%]">
-                <li onClick={() => {setSelectedStatus("Delivered"); fetchUserOrders("Delivered")}} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+                <li onClick={() => filterOrderData('Delivered')} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
                     <img className="w-6 fill-current text-blue-900" src={assets.delivered_icon} />
                     <div>Delivered</div>
                 </li>
 
-                <li onClick={() => {setSelectedStatus('Shipped'); fetchUserOrders('Shipped')}} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+                <li onClick={() => filterOrderData('Shipped')} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
                     <img className="w-6 fill-current text-blue-900" src={assets.shipped_icon} />
                     <div>Shipped</div>
                 </li>
 
-                <li onClick={() => {setSelectedStatus('Processed'); fetchUserOrders('Processed')}} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+                <li onClick={() => filterOrderData('Order Placed')} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
                     <img className="w-6 fill-current text-blue-900" src={assets.process_icon} />
-                    <div>Processed</div>
+                    <div>Placed</div>
                 </li>
 
-                <li onClick={() => {setSelectedStatus("COD"); fetchUserOrders("COD")}} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+                <li className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
                     <img className="w-6 fill-current text-blue-900" src={assets.payment_icon} />
                     <div>Paid</div>
                 </li>
@@ -195,21 +206,30 @@ function Profile() {
 
             {/* Display Orders */}
             <div className="w-full px-6 mt-6">
-              {orders.length === 0 ? (
-                <p className="text-center text-gray-500">No orders found for {selectedStatus || 'all'}.</p>
+              {filteredOrders.length === 0 ? (
+                null
               ) : (
-                orders.map(order => (
-                  <div key={order._id} className="border rounded p-4 mb-4 shadow-sm">
-                    <p><strong>Status:</strong> {order.status}</p>
-                    <p><strong>Amount:</strong> ${order.amount}</p>
-                    <p><strong>Payment:</strong> {order.payment ? 'Paid' : 'Unpaid'}</p>
-                    <p><strong>Date:</strong> {new Date(order.date).toLocaleDateString()}</p>
-                    
-                    <ul className="mt-2 text-sm text-gray-700">
-                      {order.items.map((item, index) => (
-                        <li key={index}>• {item.name} (x{item.quantity})</li>
-                      ))}
-                    </ul>
+                filteredOrders.map((order, index) => (
+                  <div key={index} className='py-4 border-t text-gray-700 flex flex-row md:flex-col md:items-center md:justify-between gap-4'>
+                    <div className='flex items-start gap-6 text-sm'>
+                      <img className='w-16 sm:w-20' src={order.image[0]} alt="product-img" />
+                      <div>
+                        <p className='sm:text-base font-medium'>
+                          {order.name}
+                        </p>
+                        <div className='flex items-center gap-3 mt-2 text-base text-gray-700'> 
+                          <p>{currency}{order.price}</p>
+                          <p>Quantity: {order.quantity}</p>
+                          <p>Size: {order.size}</p>
+                        </div>
+                        <p className='mt-1'>Date: <span className='text-gray-400'>{new Date(order.date).toDateString()}</span></p>
+                        <p className='mt-1'>Payment: <span className='text-gray-400'>{order.paymentMethod}</span></p>
+                      </div>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                        <p className='w-2 h-2 rounded-full bg-green-500'></p>
+                        <p className='text-sm md:text-base'>{order.status}</p>
+                      </div>
                   </div>
                 ))
               )}
