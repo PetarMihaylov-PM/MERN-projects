@@ -103,11 +103,21 @@ function Profile() {
 
   const filterOrderData = (orderStatus) => {
     const filtered = [];
-    orderData.forEach(order => {
-      if(order.status === orderStatus){
-        filtered.push(order);
-      }
-    });
+
+    if(orderStatus !== 'COD'){
+      orderData.forEach(order => {
+        if(order.status === orderStatus){
+          filtered.push(order);
+        }
+      });
+    } else {
+      orderData.forEach(order => {
+        if(order.paymentMethod !== 'COD'){
+          filtered.push(order);
+        }
+      })
+    }
+    
     setFilteredOrders(filtered);
   }
 
@@ -191,21 +201,21 @@ function Profile() {
                     <div>Placed</div>
                 </li>
 
-                <li className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
+                <li onClick={() => filterOrderData('COD')} className="flex flex-col items-center justify-around py-1 w-26 h-14 border border-gray-300 rounded cursor-pointer hover:bg-orange-100 hover:shadow-lg/10 transition-all ease-in-out">
                     <img className="w-6 fill-current text-blue-900" src={assets.payment_icon} />
                     <div>Paid</div>
                 </li>
             </ul>
 
             {/* Change password option */}
-            <div className="p-4 border-t mx-8 mt-5 w-[80%]">
-                <button className="w-[60%] py-2 block text-sm mx-auto rounded-full border bg-gray-900 hover:bg-white hover:text-black hover:border font-semibold text-white px-6 transition-all ease-in-out cursor-pointer"
+            <div className="p-4 border-t mx-8 mt-4 w-[80%]">
+                <button className="w-[60%] mt-2 py-2 px-6 block text-sm mx-auto rounded-full border bg-gray-900 hover:bg-white hover:text-black hover:border font-semibold text-white transition-all ease-in-out cursor-pointer"
                   onClick={() => navigate('/changepassword')}
                 >Change Password</button>
             </div>
 
             {/* Display Orders */}
-            <div className="w-full px-6 mt-6">
+            <div className="w-[80%] mt-2">
               {filteredOrders.length === 0 ? (
                 null
               ) : (
