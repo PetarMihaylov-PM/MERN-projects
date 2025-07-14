@@ -147,13 +147,13 @@ function Profile() {
           <div className="flex flex-col items-center max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-md xl:max-w-lg sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-8 bg-white shadow-xl/15 rounded-lg text-gray-900">
 
             {/* Background img */}
-            <div className="flex relative rounded-t-lg w-full h-40 overflow-hidden">
+            <div className="flex relative rounded-t-lg w-full h-40 overflow-hidden z-1">
                 <img className="absolute object-cover object-top w-full top-[-30px]" src={assets.clothing_bg} alt='clothing' />
             </div>
 
 
             {/* Profile img */}
-            <div className="flex relative mx-auto w-33 h-32 -mt-16 border-2 border-white rounded-full">
+            <div className="flex relative mx-auto w-33 h-32 -mt-16 border-2 border-white rounded-full z-2">
                 {!loading ? 
                 <div className='flex items-center object-cover w-full h-full'>
                   <img className="w-full h-full object-cover object-center rounded-full" src={user?.profileImg?.url || assets.user_icon} alt='user-img'/>
