@@ -1,6 +1,6 @@
 # 🛍️ Trend🍊ra eCommerce Website 🛍️
 This is a work-in-progress eCommerce website built with a focus on responsive layout and user-friendly shopping experience. 
-The site includes features like product browsing, shopping cart, user authentication, admin panel and etc. The project is built using the MERN stack — 
+The site includes features like product browsing, shopping cart, user profile page, user authentication, admin panel and etc. The project is built using the MERN stack — 
 MongoDB, Express, React, and Node.js — along with Tailwind CSS for 
 styling and Vite for fast development and build performance.
 
@@ -11,6 +11,11 @@ styling and Vite for fast development and build performance.
 ![trendora3](https://github.com/user-attachments/assets/86e70609-c255-48a9-b471-c33c05202e68)
 
 ![trendora4](https://github.com/user-attachments/assets/917f834a-abe6-4470-9b7d-ce85cc96fe79)
+
+![trendora6](https://github.com/user-attachments/assets/4c9d7915-b3e8-4d94-a8c2-5bd644d19cc6)
+
+![trendora7](https://github.com/user-attachments/assets/24143d89-312d-4f2a-ba78-a9e008d0c58f)
+
 
 ## Admin Panel 💻
 ![admin1](https://github.com/user-attachments/assets/6bf15fe5-977f-4746-8216-1cf4207c0ec9)
