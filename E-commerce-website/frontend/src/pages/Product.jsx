@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+import ModalImage from 'react-modal-image';
 
 
 function Product() {
@@ -45,12 +46,19 @@ function Product() {
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
             {
               productData.image.map((item, index) => (
+               
                 <img onClick={()=> setImage(item)} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer transition-all ease-in hover:scale-110' alt="img" />
+                
               ))
             }
           </div>
           <div id='mainImg' className='w-full sm:w-[80%]'>
-            <img src={image} className='w-full h-auto' alt='img' />
+            <ModalImage 
+              small={image} 
+              large={image}
+              hideZoom={true} 
+              src={image} 
+              className='w-full h-auto' alt='Product image' />
           </div>
         </div>
       

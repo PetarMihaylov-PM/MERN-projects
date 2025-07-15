@@ -6,11 +6,11 @@ import { ShopContext } from '../context/ShopContext.jsx';
 import Title from '../components/Title.jsx';
 
 function Profile() {
-
   
   const [loading, setLoading] = useState(false);
   const [orderData, setOrderData] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
+  const [matchedOrders, setMatchedOrders] = useState(false);
   
   const { navigate, backendUrl, token, currency, fetchUserProfile, user } = useContext(ShopContext);
 
@@ -85,12 +85,14 @@ function Profile() {
     const filtered = [];
 
     if(orderStatus !== 'COD'){
+      setMatchedOrders(true);
       orderData.forEach(order => {
         if(order.status === orderStatus){
           filtered.push(order);
         }
       });
     } else {
+      setMatchedOrders(true);
       orderData.forEach(order => {
         if(order.paymentMethod !== 'COD'){
           filtered.push(order);
@@ -106,10 +108,6 @@ function Profile() {
     fetchUserProfile();
     loadOrderData();
   }, [token]);
-
-  console.log(user);
-  console.log(orderData);
-  console.log(filteredOrders);
 
 
   return (
@@ -196,33 +194,38 @@ function Profile() {
 
             {/* Display Orders */}
             <div className="w-[80%] mt-2">
-              {filteredOrders.length === 0 ? (
-                null
-              ) : (
-                filteredOrders.map((order, index) => (
-                  <div key={index} className='py-4 border-t text-gray-700 flex flex-row md:flex-col md:items-center md:justify-between gap-4'>
-                    <div className='flex items-start gap-6 text-sm'>
-                      <img className='w-16 sm:w-20' src={order.image[0]} alt="product-img" />
-                      <div>
-                        <p className='sm:text-base font-medium'>
-                          {order.name}
-                        </p>
-                        <div className='flex items-center gap-3 mt-2 text-base text-gray-700'> 
-                          <p>{currency}{order.price}</p>
-                          <p>Quantity: {order.quantity}</p>
-                          <p>Size: {order.size}</p>
+              {filteredOrders.length === 0 
+                ? 
+                  (matchedOrders 
+                    ? 
+                      <p className='text-center mb-5 text-gray-700'>There are no orders with the selected status.</p>
+                    : 
+                    null) 
+                : 
+                  (filteredOrders.map((order, index) => (
+                    <div key={index} className='py-4 border-t text-gray-700 flex flex-row md:flex-col md:items-center md:justify-between gap-4'>
+                      <div className='flex items-start gap-6 text-sm'>
+                        <img className='w-16 sm:w-20' src={order.image[0]} alt="product-img" />
+                        <div>
+                          <p className='sm:text-base font-medium'>
+                            {order.name}
+                          </p>
+                          <div className='flex items-center gap-3 mt-2 text-base text-gray-700'> 
+                            <p>{currency}{order.price}</p>
+                            <p>Quantity: {order.quantity}</p>
+                            <p>Size: {order.size}</p>
+                          </div>
+                          <p className='mt-1'>Date: <span className='text-gray-400'>{new Date(order.date).toDateString()}</span></p>
+                          <p className='mt-1'>Payment: <span className='text-gray-400'>{order.paymentMethod}</span></p>
                         </div>
-                        <p className='mt-1'>Date: <span className='text-gray-400'>{new Date(order.date).toDateString()}</span></p>
-                        <p className='mt-1'>Payment: <span className='text-gray-400'>{order.paymentMethod}</span></p>
                       </div>
+                      <div className='flex items-center gap-2'>
+                          <p className='w-2 h-2 rounded-full bg-green-500'></p>
+                          <p className='text-sm md:text-base'>{order.status}</p>
+                        </div>
                     </div>
-                    <div className='flex items-center gap-2'>
-                        <p className='w-2 h-2 rounded-full bg-green-500'></p>
-                        <p className='text-sm md:text-base'>{order.status}</p>
-                      </div>
-                  </div>
-                ))
-              )}
+                  )))
+                }
             </div>
         </div>
       }  
