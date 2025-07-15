@@ -53,14 +53,16 @@ function Orders() {
       <div>
         {
           orderData.map((item, index) => (
-            <div key={index} className='py-4 border-t text-gray-700 flex flex-row md:flex-row md:items-center md:justify-between gap-4'>
+            <div key={index} className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between py-4 border-t text-gray-700'>
+
+              {/* Image + details section */}
               <div className='flex items-start gap-6 text-sm'>
-                <img className='w-16 sm:w-20' src={item.image[0]} alt="product-img" />
+                <img className='w-16 sm:w-20 shrink-0' src={item.image[0]} alt="product-img" />
                 <div>
                   <p className='sm:text-base font-medium'>
                     {item.name}
                   </p>
-                  <div className='flex items-center gap-3 mt-2 text-base text-gray-700'> 
+                  <div className='flex flex-wrap items-center gap-3 mt-2 text-base text-gray-700'> 
                     <p>{currency}{item.price}</p>
                     <p>Quantity: {item.quantity}</p>
                     <p>Size: {item.size}</p>
@@ -69,7 +71,9 @@ function Orders() {
                   <p className='mt-1'>Payment: <span className='text-gray-400'>{item.paymentMethod}</span></p>
                 </div>
               </div>
-              <div className='md:w-1/2 flex justify-between items-center sm:justify-between sm: gap-4'>
+
+              {/* Status and button section */}
+              <div className='md:w-1/2 flex justify-between items-center sm:justify-between sm:gap-4'>
                 <div className='flex items-center gap-2'>
                   <p className='w-2 h-2 rounded-full bg-green-500'></p>
                   <p className='text-sm md:text-base'>{item.status}</p>

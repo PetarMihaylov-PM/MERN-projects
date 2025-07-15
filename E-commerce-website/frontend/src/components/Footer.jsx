@@ -3,19 +3,22 @@ import { assets } from '../assets/frontend_assets/assets'
 
 function Footer() {
   return (
-    <div>
-      <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
+    <div className="px-4">
+      {/* Main footer section */}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-14 my-10 mt-40 text-sm max-w-screen-xl mx-auto">
         
-        <div>
-          <img src={assets.logo2} className='mb-5 w-32' alt='logo-icon' />
-          <p className='w-full md:w-2/3 text-gray-600 '>
+        {/* Logo & text */}
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <img src={assets.logo2} className="mb-5 w-32" alt="logo-icon" />
+          <p className="text-gray-600">
             Timeless Style. <br /> Everyday Value. <br /> Crafted to Inspire
           </p>
         </div>
 
-        <div>
-          <p className='text-xl font-medium mb-5'>COMPANY</p>
-          <ul className='flex flex-col gap-1 text-gray-600'>
+        {/* Company links */}
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <p className="text-xl font-medium mb-5">COMPANY</p>
+          <ul className="flex flex-col gap-1 text-gray-600">
             <li>Home</li>
             <li>About us</li>
             <li>Delivery</li>
@@ -23,19 +26,20 @@ function Footer() {
           </ul>
         </div>
 
-        <div>
-          <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
-          <ul className='flex flex-col gap-1 text-gray-600'>
+        {/* Contact info */}
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+          <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
+          <ul className="flex flex-col gap-1 text-gray-600">
             <li>+ 1-123-456-7890</li>
             <li>contact.trendora@gmail.com</li>
           </ul>
         </div>
-
       </div>
 
+      {/* Bottom line */}
       <div>
         <hr />
-        <p className='py-5 text-sm text-center'> 
+        <p className="py-5 text-sm text-center text-gray-500">
           Designed with love for modern shoppers. <br />
           © 2025 TRENDORA. All rights reserved.
         </p>
