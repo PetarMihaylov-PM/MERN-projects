@@ -5,12 +5,13 @@ import ProductItem from './ProductItem';
 
 function BestSellers() {
 
-  const { products } = useContext(ShopContext);
+  const { products, fisherYatesShuffle } = useContext(ShopContext);
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(()=> {
     const bestProduct = products.filter((item) => item.bestseller);
-    setBestSeller(bestProduct.slice(0, 5));
+    const shuffledBestsellers = fisherYatesShuffle(bestProduct);
+    setBestSeller(shuffledBestsellers.slice(0, 5));
   }, [products]);
 
   return (

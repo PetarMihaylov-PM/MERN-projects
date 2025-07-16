@@ -140,9 +140,14 @@ const ShopContextProvider = ({children}) => {
 
 
   const fetchUserProfile = async () => {
-      try {
 
-        const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token');
+
+      if(!token) {
+        return;
+      }
+
+      try {
         const response = await axios.post(backendUrl + '/api/user/profile', {}, { headers: { token } });
 
         if (response.data.success) {
@@ -157,6 +162,17 @@ const ShopContextProvider = ({children}) => {
         toast.error(error.message);
       }
   };
+
+
+  const fisherYatesShuffle = (array) => {
+      const shuffled = [...array];
+  
+      for (let i = shuffled.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
 
   useEffect(() => {
     getProductData();
@@ -195,7 +211,8 @@ const ShopContextProvider = ({children}) => {
     token,
     fetchUserProfile,
     user,
-    setUser
+    setUser,
+    fisherYatesShuffle
   }
 
   return(

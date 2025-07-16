@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 
 function LatestCollection() {
 
-  const { products } = useContext(ShopContext);
+  const { products, fisherYatesShuffle } = useContext(ShopContext);
   const [latestProducts, setLatestProducts] = useState([]);
 
   /* for random collection every time
@@ -21,7 +21,8 @@ function LatestCollection() {
   */
 
   useEffect(()=> {
-    setLatestProducts(products.slice(0, 10));
+    const shuffleProducts = fisherYatesShuffle(products)
+    setLatestProducts(shuffleProducts.slice(0, 10));
   }, [products]);
 
   return (

@@ -7,8 +7,9 @@ const ProductItem = ({id, image, name, price, onClick}) => {
   const {currency} = useContext(ShopContext);
 
   return (
+    
     <Link 
-      className='text-gray-700 cursor-pointer' 
+      className='flex flex-col justify-between text-gray-700 cursor-pointer' 
       to={`/product/${id}`}
       onClick={onClick}
     >
