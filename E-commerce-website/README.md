@@ -17,16 +17,18 @@ styling and Vite for fast development and build performance.
 ![trendora7](https://github.com/user-attachments/assets/24143d89-312d-4f2a-ba78-a9e008d0c58f)
 
 
+
+## Mobile Responsiveness 📱
+![responsivness](https://github.com/user-attachments/assets/216674b3-6077-4edd-9527-1eb5eb6edd4e) ![responsivness2](https://github.com/user-attachments/assets/5e2e8425-0f15-462d-8725-5f516f5cc564) ![responsivness3](https://github.com/user-attachments/assets/38626358-6551-47eb-b65a-639418382df2)
+
+
+
 ## Admin Panel 💻
-![admin1](https://github.com/user-attachments/assets/6bf15fe5-977f-4746-8216-1cf4207c0ec9)
+![admin1](https://github.com/user-attachments/assets/6bf15fe5-977f-4746-8216-1cf4207c0ec9) 
 
 ![admin2](https://github.com/user-attachments/assets/cc32c2e1-9764-4a93-83f7-15eafa6c9b6a)
 
 ![admin3](https://github.com/user-attachments/assets/f8f8cd6d-2380-4792-9ff3-dd9dd11b7179)
-
-
-
-
 
 
 
