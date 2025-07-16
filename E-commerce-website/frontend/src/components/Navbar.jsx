@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
+  const [dropDownVisible, setDropDownVisible] = useState(false);
   const { setShowSearch, showSearch, getCartCount, navigate, setToken, token, setCartItems, fetchUserProfile, user } = useContext(ShopContext);
 
   const logOut = () => {
@@ -63,17 +64,19 @@ function Navbar() {
         <div className='group relative'>
 
           <div className='flex items-center object-cover w-full h-full'>
-            <img onClick={() => token ? 'null' : navigate('/login')} src={token ? user?.profileImg?.url : assets.profile_icon} alt="profile-icon" className={`${token ? 'w-7 h-7 rounded-full object-cover' : 'w-5'} cursor-pointer`}/>
+            <img onClick={() => token ? setDropDownVisible(prev => !prev) : navigate('/login')} src={token ? user?.profileImg?.url : assets.profile_icon} alt="profile-icon" className={`${token ? 'w-7 h-7 rounded-full object-cover' : 'w-5'} cursor-pointer`}/>
           </div>
           {/* Dropdown Menu */}
-          {token && 
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-3'>
+          {token && dropDownVisible ?
+            <div className='absolute dropdown-menu right-0 pt-4 z-3'>
               <div className='flex flex-col gap-2 w-36 py-3 px-5  bg-slate-100 text-gray-500 rounded'>
-                <p onClick={() => navigate('/profile')} className='cursor-pointer hover:text-black'>My profile</p>
-                <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
-                <p onClick={logOut} className='cursor-pointer hover:text-black'>Logout</p>
+                <p onClick={() => {navigate('/profile'); setDropDownVisible(false)}} className='cursor-pointer hover:text-black'>My profile</p>
+                <p onClick={() => {navigate('/orders'); setDropDownVisible(false)}} className='cursor-pointer hover:text-black'>Orders</p>
+                <p onClick={() => {logOut(); setDropDownVisible(false)}} className='cursor-pointer hover:text-black'>Logout</p>
               </div>
             </div>
+            :
+            null
           }
         </div>
         <Link to='/cart' className='relative'>

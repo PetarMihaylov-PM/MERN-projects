@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="px-4">
       {/* Main footer section */}
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-14 my-10 mt-40 text-sm max-w-screen-xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-14 my-10 mt-20 sm:mt-40 text-sm max-w-screen-xl mx-auto">
         
         {/* Logo & text */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">

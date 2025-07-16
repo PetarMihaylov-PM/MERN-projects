@@ -8,18 +8,6 @@ function LatestCollection() {
   const { products, fisherYatesShuffle } = useContext(ShopContext);
   const [latestProducts, setLatestProducts] = useState([]);
 
-  /* for random collection every time
-
-  let firstRandomIndex = Math.floor(Math.random()* (products.length - 11));
-  let secondRandomIndex = firstRandomIndex + 10;
-
-  change useEffect to:
-  useEffect(()=> {
-    setLatestProducts(products.slice(firstRandomIndex, secondRandomIndex));
-  }, []);
-  
-  */
-
   useEffect(()=> {
     const shuffleProducts = fisherYatesShuffle(products)
     setLatestProducts(shuffleProducts.slice(0, 10));
