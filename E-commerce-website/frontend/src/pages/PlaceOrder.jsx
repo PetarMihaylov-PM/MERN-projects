@@ -59,7 +59,7 @@ function PlaceOrder() {
         }
       }
     }
-    const rzp = new window.RazorPay(options);
+    const rzp = new window.Razorpay(options);
     rzp.open();
   }
 
