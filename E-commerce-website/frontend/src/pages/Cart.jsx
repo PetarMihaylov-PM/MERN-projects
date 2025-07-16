@@ -1,13 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title';
 import { assets } from '../assets/frontend_assets/assets';
 import CartTotal from '../components/CartTotal';
+import { toast } from 'react-toastify';
 
 function Cart() {
   const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
+
+  const handleProceedToPayment = () => {
+    if(cartData.length < 1) {
+      toast.error('Your cart is empty');
+    } else {
+      navigate('/placeorder');
+    }
+  }
 
   useEffect(() => {
 
@@ -37,7 +46,6 @@ function Cart() {
       </div>
 
       <div className='flex flex-row items-center justify-between'>
-
       
         <div>
           { cartData.length > 0 ?
@@ -67,20 +75,18 @@ function Cart() {
               <h1 className='flex prata-regular text-gray-600 text-3xl sm:py-3 lg:text-4xl leading-relaxed text-nowrap mb-3'>
                 Is Empty
               </h1>
-              <img className='w-60 lg:ml-48' src={assets.empty_cart_img} alt="empty-cart" />
+              <img className='w-60' src={assets.empty_cart_img} alt="empty-cart" />
             </div>
     
           }
           
         </div>
         
-
-
         <div className='flex justify-end my-20'>
           <div className='w-full md:w-[450px]'>
             <CartTotal />
             <div className='w-full text-end'>
-              <button onClick={() => navigate('/placeorder')} className='bg-black text-white text-sm my-8 px-8 py-3 cursor-pointer hover:bg-gray-800 transition-all ease-in-out duration-150'>PROCEED TO CHECKOUT</button>
+              <button onClick={handleProceedToPayment} className='bg-black text-white text-sm my-8 px-8 py-3 cursor-pointer hover:bg-gray-800 transition-all ease-in-out duration-150'>PROCEED TO CHECKOUT</button>
             </div>
           </div>
         </div>
