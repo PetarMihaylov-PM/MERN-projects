@@ -12,6 +12,10 @@ styling and Vite for fast development and build performance.
 
 ![trendora4](https://github.com/user-attachments/assets/917f834a-abe6-4470-9b7d-ce85cc96fe79)
 
+![trendora](https://github.com/user-attachments/assets/e6091235-c5cf-450b-b386-d0f94f2ed323)
+
+![trendora1](https://github.com/user-attachments/assets/5683e09b-b4dd-4682-882f-94bbadb5bb81)
+
 ![trendora6](https://github.com/user-attachments/assets/4c9d7915-b3e8-4d94-a8c2-5bd644d19cc6)
 
 ![trendora7](https://github.com/user-attachments/assets/24143d89-312d-4f2a-ba78-a9e008d0c58f)
