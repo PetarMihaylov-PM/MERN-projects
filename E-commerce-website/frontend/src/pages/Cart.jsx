@@ -45,16 +45,16 @@ function Cart() {
         <Title text1={'YOUR'} text2={'CART'}/>
       </div>
 
-      <div className='flex flex-col  items-center justify-between'>
+      <div className='flex flex-col lg:flex-row items-center justify-between gap-10'>
       
-        <div>
+        <div className='flex-1 w-full'>
           { cartData.length > 0 ?
             cartData.map((item, index) => {
               
               const productData = products.find(product => product._id === item._id);
 
               return (
-                <div key={index} className='py-4 border-t text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4'>
+                <div key={index} className='py-4 border-t text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 max-w-[900px]'>
                   <div className='flex items-start gap-6'>
                     <img className='w-16 sm:w-20' src={productData.image[0]} alt="product-img" />
                     <div>
