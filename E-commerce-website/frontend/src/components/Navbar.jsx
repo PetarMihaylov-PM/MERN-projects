@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { assets } from '../assets/frontend_assets/assets';
 import { Link, NavLink } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
   const [dropDownVisible, setDropDownVisible] = useState(false);
   const { setShowSearch, showSearch, getCartCount, navigate, setToken, token, setCartItems, fetchUserProfile, user } = useContext(ShopContext);
+
 
   const logOut = () => {
     localStorage.removeItem('token');

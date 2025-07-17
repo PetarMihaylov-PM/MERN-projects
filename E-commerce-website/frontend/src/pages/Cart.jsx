@@ -59,7 +59,7 @@ function Cart() {
                     <img className='w-16 sm:w-20' src={productData.image[0]} alt="product-img" />
                     <div>
                       <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
-                      <div className='flex items-center gap-5 mt-2'>
+                      <div className='flex items-center gap-5 mt-2 text-nowrap'>
                         <p>{currency} {productData.price}</p>
                         <p className='w-11 text-center px-2 sm:px-3 sm:py-1 border border-gray-400 bg-slate-50'>{item.size}</p>
                       </div>

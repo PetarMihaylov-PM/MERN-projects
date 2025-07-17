@@ -14,7 +14,7 @@ const ProductItem = ({id, image, name, price, onClick}) => {
       onClick={onClick}
     >
       <div className='overflow-hidden'>
-        <img className='h-70 w-60 object-cover overflow-hidden hover:scale-110 transition ease-in-out' src={image[0]} alt='img_icon' />
+        <img className='h-80 w-60 object-cover overflow-hidden hover:scale-110 transition ease-in-out' src={image[0]} alt='img_icon' />
       </div>
       <p className='pt-3 pb-1 text-sm'>
         {name}
