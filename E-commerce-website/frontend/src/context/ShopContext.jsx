@@ -43,6 +43,7 @@ const ShopContextProvider = ({children}) => {
       cartData[itemId][size] = 1;
     }
     setCartItems(cartData);
+    toast.success('Product Added');
 
     if(token) {
       try {
@@ -84,6 +85,7 @@ const ShopContextProvider = ({children}) => {
       try {
 
         await axios.post(backendUrl + '/api/cart/update', {itemId, size, quantity}, {headers: {token}});
+        toast.success('Cart updated');
 
       } catch (error) {
         console.log(error);
@@ -96,9 +98,9 @@ const ShopContextProvider = ({children}) => {
     let totalAmount = 0;
 
     for(const items in cartItems){
-      let itemInfo = products.find(product => product._id === product._id);
+      let itemInfo = products.find(product => product._id === items);
       for(const item in cartItems[items]){
-        if (cartItems[items][item] > 0) {
+        if (cartItems[items][item] > 0 && itemInfo) {
           totalAmount += itemInfo.price * cartItems[items][item];
         }  
       }

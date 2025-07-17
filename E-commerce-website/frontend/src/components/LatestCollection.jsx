@@ -16,9 +16,9 @@ function LatestCollection() {
   return (
     <div className='my-10'>
       <div className='text-center py-8 text-3xl'>
-        <Title text1={'LATEST'} text2={'COLLECTION'}/>
+        <Title text1={'NEW'} text2={'ARRIVALS'}/>
         <p className='w-3/4 m-auto text-xs sm:text md:text-base text-gray-600'>
-          Explore our newest arrivals - stylish, versatile, and made to elevate your everyday look.
+          Explore our latest collection - stylish, versatile, and made to elevate your everyday look.
         </p>
       </div>
       
