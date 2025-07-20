@@ -5,6 +5,11 @@ import CourseDetails from './pages/student/CourseDetails';
 import CoursesList from './pages/student/CoursesList';
 import MyEnrollments from './pages/student/MyEnrollments';
 import Loading from './components/student/Loading.jsx';
+import Educator from './pages/educator/Educator.jsx'
+import Dashboard from './pages/educator/Dashboard.jsx'
+import AddCourse from './pages/educator/AddCourse.jsx'
+import MyCourses from './pages/educator/MyCourses.jsx'
+import StudentsEnrolled from './pages/educator/StudentsEnrolled.jsx'
 
 function App() {
   return (
@@ -17,6 +22,12 @@ function App() {
         <Route path='/course/:id' element={<CourseDetails />}/>
         <Route path='/course-list/:input' element={<CoursesList />}/>
         <Route path='/loading/:path' element={<Loading />}/>
+        <Route path='/educator' element={<Educator />}>
+          <Route path='dashboard' element={<Dashboard />}/>
+          <Route path='add-course' element={<AddCourse />}/>
+          <Route path='my-courses' element={<MyCourses />}/>
+          <Route path='student-enrolled' element={<StudentsEnrolled />}/>
+        </Route>
       </Routes>
     </div>
   )

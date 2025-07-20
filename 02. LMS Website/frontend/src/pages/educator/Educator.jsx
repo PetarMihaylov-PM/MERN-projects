@@ -1,8 +1,13 @@
-import React from 'react'
+import { Outlet } from "react-router-dom"
 
 function Educator() {
   return (
-    <div>Educator</div>
+    <div>
+      <h1>Educator page</h1>
+      <div>
+        {<Outlet />}
+      </div>
+    </div>
   )
 }
 
