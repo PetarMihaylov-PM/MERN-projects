@@ -12,7 +12,7 @@ const Navbar = () => {
     const  { user } = useUser();
 
     return (
-        <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white' : 'bg-fuchsia-200/50'}`}>
+        <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white' : 'bg-fuchsia-200/70'}`}>
             <img src={assets.logo2} alt="Logo" className='w-28 lg:w-32 cursor-pointer' />
 
             <div className='hidden md:flex items-center gap-5 text-gray-500'>
