@@ -2,6 +2,9 @@
 
 This is a full-featured Learning Management System (LMS) currently under development, built with the MERN stack — **MongoDB**, **Express.js**, **React**, and **Node.js**. It’s designed to deliver a seamless and responsive learning experience for students and instructors.
 
+![academy](https://github.com/user-attachments/assets/d60683d0-1e2b-4607-9c6c-c5ac06465479)
+
+
 ## 🚀 Features (Planned & In Progress)
 
 - 🔐 **User Authentication**
