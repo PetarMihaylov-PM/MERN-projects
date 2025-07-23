@@ -43,6 +43,7 @@ import profile_img2 from './profile_img2.png'
 import profile_img3 from './profile_img3.png'
 import lesson_icon from './lesson_icon.svg'
 import logo2 from './logo2.png';
+import logo3 from './logo3.png';
 import sketch2 from './sktech.png';
 
 
@@ -92,6 +93,7 @@ export const assets = {
     blue_tick_icon,
     lesson_icon,
     logo2,
+    logo3,
     sketch2
 }
 
