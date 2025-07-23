@@ -19,7 +19,7 @@ export const AppContextProvider = (props) => {
   }
 
   /* Calculate course avarage rating */
-  const calculateRating = (course) => {
+  function calculateRating (course) {
 
     if(course.courseRatings.length === 0) {
       return 0;
