@@ -16,11 +16,27 @@ export const AppContextProvider = (props) => {
   const getAllCourses = async () => {
     setAllCourses(dummyCourses);
   }
+
+  /* Calculate course avarage rating */
+  const calculateRating = (course) => {
+
+    if(course.courseRatings.length === 0) {
+      return 0;
+    }
+
+    let totalRating = 0;
+    course.courseRatings.forEach(course => {
+      totalRating += course.rating;
+    });
+
+    return totalRating / course.courseRatings.length;
+  }
  
   const value = {
     navigate,
     currency,
     allCourses,
+    calculateRating,
   }
 
   useEffect(() => {
