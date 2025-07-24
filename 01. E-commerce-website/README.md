@@ -1,4 +1,6 @@
 # 🛍️ Trend🍊ra eCommerce Website 🛍️
+https://trendora-e-commerce.vercel.app/
+
 This is an eCommerce website designed with a focus on responsive layout and a user-friendly shopping experience. It includes features such as product browsing, a shopping cart, user authentication, a user profile page, and an admin panel. The project is built using the MERN stack - MongoDB, Express, React, and Node.js - along with Tailwind CSS for styling and Vite for fast development and optimized build performance.
 
 ![trendora2](https://github.com/user-attachments/assets/3f41b84d-f7b6-4e7b-9d03-25e62a76614b)
