@@ -4,6 +4,8 @@ This is a full-featured Learning Management System (LMS) currently under develop
 
 ![academy](https://github.com/user-attachments/assets/d60683d0-1e2b-4607-9c6c-c5ac06465479)
 
+![lms](https://github.com/user-attachments/assets/86e514db-b8f1-4dba-bcb8-7f85ebeedaa6)
+
 
 ## 🚀 Features (Planned & In Progress)
 
