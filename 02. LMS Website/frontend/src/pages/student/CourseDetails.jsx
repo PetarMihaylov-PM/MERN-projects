@@ -7,7 +7,7 @@ import { assets } from '../../assets/assets';
 function CourseDetails() {
 
   const { id } = useParams();
-  const { allCourses, calculateRating } = useContext(AppContext);
+  const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext);
 
   const [courseData, setCourseData] = useState(null);
   
