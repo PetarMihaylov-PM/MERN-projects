@@ -8,23 +8,25 @@ import humanizeDuration from 'humanize-duration';
 function CourseDetails() {
 
   const { id } = useParams();
-  const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext);
+  const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime, currency } = useContext(AppContext);
 
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
-  
+
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id);
-    
+
     setCourseData(findCourse);
   }
 
 
   const toggleSection = (index) => {
     setOpenSection((prev) => (
-      {...prev, 
-        [index]: !prev[index]}
+      {
+        ...prev,
+        [index]: !prev[index]
+      }
     ));
   }
 
@@ -42,27 +44,27 @@ function CourseDetails() {
 
       {/* Left side */}
       <div className='max-w-xl z-10 text-gray-500'>
-          <h1 className='md:text-[28px] text-[36px] font-semibold text-gray-800'>{courseData.courseTitle}</h1> 
-          <p className='pt-4 md:text-base text-sm' dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p> 
+        <h1 className='md:text-[28px] text-[36px] font-semibold text-gray-800'>{courseData.courseTitle}</h1>
+        <p className='pt-4 md:text-base text-sm' dangerouslySetInnerHTML={{ __html: courseData.courseDescription.slice(0, 200) }}></p>
 
-      {/* Review and ratings */}
-      <div className='flex items-center space-x-2 pt-3 pb-1 text-sm'>
-        <p>{calculateRating(courseData)}</p>
-        <div className='flex'>
-          {[...Array(5)].map((_, i) => (
-            <img className='w-3.5 h-3.5' key={i} src={i < Math.floor(calculateRating(courseData)) ? assets.star : assets.star_blank} alt="rating" />
-          ))}
+        {/* Review and ratings */}
+        <div className='flex items-center space-x-2 pt-3 pb-1 text-sm'>
+          <p>{calculateRating(courseData)}</p>
+          <div className='flex'>
+            {[...Array(5)].map((_, i) => (
+              <img className='w-3.5 h-3.5' key={i} src={i < Math.floor(calculateRating(courseData)) ? assets.star : assets.star_blank} alt="rating" />
+            ))}
+          </div>
+          <p className='text-fuchsia-600'>
+            ({courseData.courseRatings.length} {courseData > 1 ? 'ratings' : 'rating'})
+          </p>
+          <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
         </div>
-        <p className='text-fuchsia-600'>
-          ({courseData.courseRatings.length} {courseData > 1 ? 'ratings' : 'rating'})
-        </p>
-        <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
-      </div>
-      
-      <p className='text-sm'>Course by <span className='text-fuchsia-600 underline'>Pete's Academy</span></p>
-        
 
-      <div className='pt-8 text-gray-800'>
+        <p className='text-sm'>Course by <span className='text-fuchsia-600 underline'>Pete's Academy</span></p>
+
+
+        <div className='pt-8 text-gray-800'>
           <h2 className='text-xl font-semibold'>Course Structure</h2>
 
           <div className='pt-5'>
@@ -80,40 +82,51 @@ function CourseDetails() {
                   <ul className='list-disc md:pl-10 pl-4 pr-4 py-2 text-gray-600 border-t border-gray-300'>
                     {chapter.chapterContent.map((lecture, index) => (
                       <li key={index} className='flex items-center gap-2 py-1 mt-2'>
-                        <img src={assets.play_icon} alt="play-icon" className='w-4 h-4'/>
+                        <img src={assets.play_icon} alt="play-icon" className='w-4 h-4' />
                         <div className='flex items-center justify-between w-full text-gray-800 text-xs md:text-default'>
                           <p>{lecture.lectureTitle}</p>
                           <div className='flex gap-2'>
                             {lecture.isPreviewFree && <p className='text-fuchsia-600 cursor-pointer'>Preview</p>}
-                            <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units:['h', 'm']})}</p>
+                            <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, { units: ['h', 'm'] })}</p>
                           </div>
                         </div>
                       </li>
                     ))}
                   </ul>
                 </div>
-
               </div>
             ))}
           </div>
-      </div>
+        </div>
 
-      <div className='py-20 text-sm md:text-default'>
-        <h3 className='text-cl font-semibold text-gray-800'>Course Description</h3>
-        <p className='pt-3 rich-text' dangerouslySetInnerHTML={{__html: courseData.courseDescription}}></p>
-      </div>
+
+        {/* Course description */}
+        <div className='py-20 text-sm md:text-default'>
+          <h3 className='text-cl font-semibold text-gray-800'>Course Description</h3>
+          <p className='pt-3 rich-text' dangerouslySetInnerHTML={{ __html: courseData.courseDescription }}></p>
+        </div>
 
       </div>
 
 
       {/* Right side */}
-      <div>
+      <div className='max-w-[424px] shadow-[0px_4px_15px_2px_rgba(0,0,0,0.1)] z-10 rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]'>
+        <img src={courseData.courseThumbnail} alt="course-image" />
+        <div className='p-5'>
+          <div className='flex items-center gap-2'>
+            <img className='w-3.5' src={assets.time_left_clock_icon} alt="time-icon" />
+            <p className='text-red-500'><span className='font-medium'>5 days</span> left at this price!</p>
+          </div>
 
+          <div>
+            <p>{currency}{(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2)}</p>
+          </div>
+        </div>
       </div>
     </div>
-  ) 
-  : 
-    <Loading/>
+  )
+    :
+    <Loading />
 }
 
 export default CourseDetails
