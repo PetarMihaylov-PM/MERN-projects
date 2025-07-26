@@ -155,6 +155,17 @@ function CourseDetails() {
 
           <button className='md:mt-6 mt-4 w-full py-3 rounded bg-fuchsia-600 text-white font-medium'>{isEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
 
+          <div className='pt-6'>
+            <p className='md:text-xl text-lg font-medium text-gray-600'>What's in the course?</p>
+            <ul className='ml-4 pt-2 text-sm md:text-base list-disc text-gray-500 space-y-1'>
+              <li>High-quality video lessons with step-by-step explanations</li>
+              <li>Downloadable resources, templates, and practice files</li>
+              <li>Lifetime access to all course materials and future updates</li>
+              <li>Certificate of completion to showcase your skills</li>
+              <li>Access on all devices — mobile, tablet, and desktop</li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
