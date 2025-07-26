@@ -12,6 +12,7 @@ function CourseDetails() {
 
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
+  const [isEnrolled, setIsEnrolled] = useState(false);
 
 
   const fetchCourseData = async () => {
@@ -111,6 +112,8 @@ function CourseDetails() {
 
       {/* Right side */}
       <div className='max-w-[424px] shadow-[0px_4px_15px_2px_rgba(0,0,0,0.1)] z-10 rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]'>
+
+        {/* Course image and discount days left */}
         <img src={courseData.courseThumbnail} alt="course-image" />
         <div className='p-5'>
           <div className='flex items-center gap-2'>
@@ -118,9 +121,40 @@ function CourseDetails() {
             <p className='text-red-500'><span className='font-medium'>5 days</span> left at this price!</p>
           </div>
 
-          <div>
-            <p>{currency}{(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2)}</p>
+
+          {/* Rendering the price section */}
+          <div className='flex gap-3 items-center pt-2'>
+            <p className='text-gray-800 md:text-4xl text-2xl font-semibold'>{currency}{(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2)}</p>
+            <p className='md:text-lg text-gray-500 line-through'>{currency}{courseData.coursePrice}</p>
+            <p className='md:text-lg text-gray-500'>{courseData.discount}% off</p>
           </div>
+
+
+          {/* Rendering the rating, course duration and num of lessons */}
+          <div className='flex items-center text-sm md:text-default gap-4 pt-2 md:pt-4 text-gray-500'>
+
+            <div className='flex items-center gap-1'>
+              <img src={assets.star} alt="star-icon" />
+              <p>{calculateRating(courseData)}</p>
+            </div>
+            
+            <div className='h-4 w-px bg-gray-500/40'></div>
+
+            <div className='flex items-center gap-1'>
+              <img src={assets.time_clock_icon} alt="clock-icon" />
+              <p>{calculateCourseDuration(courseData)}</p>
+            </div>
+
+            <div className='h-4 w-px bg-gray-500/40'></div>
+
+            <div className='flex items-center gap-1'>
+              <img src={assets.lesson_icon} alt="lessons-icon" />
+              <p>{calculateNoOfLectures(courseData)} lessions</p>
+            </div>
+          </div>
+
+          <button className='md:mt-6 mt-4 w-full py-3 rounded bg-fuchsia-600 text-white font-medium'>{isEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
+
         </div>
       </div>
     </div>
