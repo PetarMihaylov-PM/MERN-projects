@@ -3,7 +3,7 @@ import AppContext from '../../context/AppContext'
 
 function MyEnrollmets() {
 
-  const { enrolledCourses, calculateCourseDuration } = useContext(AppContext);
+  const { enrolledCourses, calculateCourseDuration, navigate } = useContext(AppContext);
 
   const [progressArray, setProgressArray] = useState([
     {lectureCompleted: 2, totalLectures: 4},
@@ -48,10 +48,15 @@ function MyEnrollmets() {
                   {calculateCourseDuration(course)}
                 </td>
                 <td className='px-4 py-3 max-sm:hidden'>
-                  4 / 10 <span>Lectures</span>
+                  {progressArray[index] && `${progressArray[index].lectureCompleted} / ${progressArray[index].totalLectures}`} <span>Lectures</span>
                 </td>
                 <td className='px-4 py-3 max-sm:text-right'>
-                  <button className='px-3 sm:px-5 py-1.5 sm:py-2 bg-fuchsia-600 max-sm:text-xs text-white'>Ongoing</button>
+                  <button onClick={() => navigate('/player/' + course._id)} className='px-3 sm:px-5 py-1.5 sm:py-2 bg-fuchsia-600 max-sm:text-xs text-white'>
+                    {
+                      progressArray[index] && progressArray[index].lectureCompleted / progressArray[index].totalLectures === 1 ? 'Completed' : 'Ongoing'
+                    }
+                    
+                  </button>
                 </td>
               </tr>
             ))}
