@@ -79,6 +79,12 @@ export const AppContextProvider = (props) => {
 
 
 
+  /* Fetch User Enrolled Courses */
+  const fetchUserEnrolledCourses = async() => {
+    setEnrolledCourses(dummyCourses);
+  }
+
+
   const value = {
     navigate,
     currency,
@@ -89,10 +95,13 @@ export const AppContextProvider = (props) => {
     calculateChapterTime,
     calculateCourseDuration,
     calculateNoOfLectures,
+    enrolledCourses,
+    fetchUserEnrolledCourses
   }
 
   useEffect(() => {
     getAllCourses();
+    fetchUserEnrolledCourses();
   },[]);
 
 
