@@ -3,6 +3,8 @@ import AppContext from '../../context/AppContext'
 import { useParams } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import humanizeDuration from 'humanize-duration';
+import YouTube from 'react-youtube';
+
 
 function Player() {
 
@@ -31,7 +33,7 @@ function Player() {
 
   useEffect(() => {
     getCourseData();
-  },[])
+  },[enrolledCourses])
 
   return (
     <>
@@ -84,7 +86,20 @@ function Player() {
 
         {/* Right column */}
         <div>
-
+          {
+            playerData ? 
+             (
+              <div>
+                <YouTube 
+                  videoId={playerData.lectureUrl.split('/').pop()}  
+                  iframeClassName='w-full aspect-video'
+                />
+              </div>
+             )
+            :
+             <img src={courseData ? courseData.courseThumbnail : ''} alt="course-thumbnail" />
+          }
+          
         </div>
       </div>
     </>
