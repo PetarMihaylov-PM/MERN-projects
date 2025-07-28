@@ -1,5 +1,7 @@
-import React, { useContext, useState } from 'react'
-import AppContext from '../../context/AppContext'
+import React, { useContext, useState } from 'react';
+import AppContext from '../../context/AppContext';
+import {Line} from 'rc-progress';
+import Footer from '../../components/student/Footer';
 
 function MyEnrollmets() {
 
@@ -22,6 +24,14 @@ function MyEnrollmets() {
     {lectureCompleted: 5, totalLectures: 5},
   ]);
 
+  const calculateCourseProgress = (index) => {
+    if(progressArray[index]) {
+      return (progressArray[index].lectureCompleted * 100) / progressArray[index].totalLectures;
+    }
+
+    return 0;
+  }
+
   return (
     <>
       <div className='md:px-36 px-8 pt-10'>
@@ -42,6 +52,7 @@ function MyEnrollmets() {
                   <img src={course.courseThumbnail} alt="course-thumbnail" className='w-14 sm:w-24 md:w-28'/>
                   <div className='flex-1'>
                     <p className='mb-1 max-sm:text-sm'>{course.courseTitle}</p>
+                    <Line strokeWidth={2} percent={calculateCourseProgress(index)} className='bg-gray-300 rounded-full'/>
                   </div>
                 </td>
                 <td className='px-4 py-3 max-sm:hidden'>
@@ -51,7 +62,7 @@ function MyEnrollmets() {
                   {progressArray[index] && `${progressArray[index].lectureCompleted} / ${progressArray[index].totalLectures}`} <span>Lectures</span>
                 </td>
                 <td className='px-4 py-3 max-sm:text-right'>
-                  <button onClick={() => navigate('/player/' + course._id)} className='px-3 sm:px-5 py-1.5 sm:py-2 bg-fuchsia-600 max-sm:text-xs text-white'>
+                  <button onClick={() => navigate('/player/' + course._id)} className='px-3 sm:px-5 py-1.5 sm:py-2 bg-fuchsia-600 max-sm:text-xs text-white cursor-pointer'>
                     {
                       progressArray[index] && progressArray[index].lectureCompleted / progressArray[index].totalLectures === 1 ? 'Completed' : 'Ongoing'
                     }
@@ -63,6 +74,7 @@ function MyEnrollmets() {
           </tbody>
         </table>
       </div>
+      <Footer />
     </>
   )
 }
