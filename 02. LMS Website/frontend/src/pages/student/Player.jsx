@@ -5,6 +5,7 @@ import { assets } from '../../assets/assets';
 import humanizeDuration from 'humanize-duration';
 import YouTube from 'react-youtube';
 import Footer from '../../components/student/Footer';
+import Rating from '../../components/student/Rating';
 
 
 function Player() {
@@ -85,6 +86,7 @@ function Player() {
 
           <div className='flex items-center gap-2 py-3 mt-10'>
             <h1 className='text-xl font-bold'>Rate this Course:</h1>
+            <Rating initialRating={0} />
           </div>
 
         </div>
@@ -107,7 +109,7 @@ function Player() {
               </div>
              )
             :
-             <img src={courseData ? courseData.courseThumbnail : ''} alt="course-thumbnail" />
+             <img src={courseData ? courseData.courseThumbnail : null} alt="course-thumbnail" />
           }
           
         </div>
