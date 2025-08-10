@@ -31,7 +31,19 @@ function AddCourse() {
   }, []);
 
   return (
-    <div>AddCourse</div>
+    <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
+      <form>
+        <div className='flex flex-col gap-1'>
+          <p>Course Title</p>
+          <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500'
+            onChange={(e)=> setCourseTitle(e.target.value)}
+            value={courseTitle}
+          />
+
+        </div>
+      </form>
+
+    </div>
   )
 }
 
