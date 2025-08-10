@@ -35,11 +35,14 @@ function AddCourse() {
       <form>
         <div className='flex flex-col gap-1'>
           <p>Course Title</p>
-          <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500'
+          <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500' required
             onChange={(e)=> setCourseTitle(e.target.value)}
             value={courseTitle}
           />
-
+        </div>
+        <div className='flex flex-col gap-1'>
+          <p>Course Description</p>
+          <div ref={editorRef}></div>
         </div>
       </form>
 
