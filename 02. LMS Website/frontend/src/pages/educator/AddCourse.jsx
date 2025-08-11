@@ -32,7 +32,7 @@ function AddCourse() {
 
   return (
     <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
-      <form>
+      <form className='flex flex-col gap-4 max-w-md w-full text-gray-500'>
         <div className='flex flex-col gap-1'>
           <p>Course Title</p>
           <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500' required
@@ -44,6 +44,14 @@ function AddCourse() {
           <p>Course Description</p>
           <div ref={editorRef}></div>
         </div>
+
+        <div className='flex items-center justify-between flex-wrap'>
+          <div className='flex flex-col gap-1'>
+            <p>Course Price</p>
+            <input onChange={(e)=>setCoursePrice(e.target.value)} value={coursePrice} type="number" placeholder='0' className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required/>
+          </div>
+        </div>
+
       </form>
 
     </div>
