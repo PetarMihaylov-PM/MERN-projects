@@ -67,7 +67,23 @@ function AddCourse() {
           <input onChange={(e) => setDiscount(e.target.value)} value={discount} type="number" placeholder='0' min={0} max={100} className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required/>
         </div>
 
+
         {/* Adding Chapters and Lectures */}
+
+        <div>
+          {chapters.map((chapter, index) => (
+            <div key={index} className='bg-white border rounded-lg mb-4'>
+              <div className='fkex justify-between items-center p-4 border-b'>
+                <div className='flex items-center'>
+                  <img src={assets.dropdown_icon} width={14} alt="dropdown-icon" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && '-rotate-90'}`} />
+                  <span className='font-semibold'>{index + 1} {chapter.chapterTitle}</span>
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+        </div>
 
       </form>
 
