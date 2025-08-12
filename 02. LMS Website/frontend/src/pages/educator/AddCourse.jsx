@@ -78,13 +78,23 @@ function AddCourse() {
                   <img src={assets.dropdown_icon} width={14} alt="dropdown-icon" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && '-rotate-90'}`} />
                   <span className='font-semibold'>{index + 1} {chapter.chapterTitle}</span>
                 </div>
-
+                <span className='text-gray-500'>{chapter.chapterContent.length} Lectures</span>
+                <img src={assets.cross_icon} alt="" className='cursor-pointer'/>
               </div>
-
+              {!chapter.collapsed && (
+                <div className='p-4'>
+                  {chapter.chapterContent.map((lecture, index) => (
+                    <div key={index} className='flex justify-between items-center mb-2'>
+                      <span>
+                        {index + 1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - <a href={lecture.lectureUrl} target='_blank' className='text-blue-500'>Link</a> - {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
-
       </form>
 
     </div>
