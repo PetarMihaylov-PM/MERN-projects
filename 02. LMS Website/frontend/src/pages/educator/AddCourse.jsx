@@ -108,6 +108,25 @@ function AddCourse() {
                 <h2 className='text-lg font-semibold mb-4'>
                   Add Lecture
                 </h2>
+
+                <div className='mb-2'>
+                  <p>Lecture Title</p>
+                  <input 
+                    type="text" 
+                    className='mt-1 block w-full border rounded py-1 px-2'
+                    value={lectureDetais.lectureTitle}
+                    onChange={(e) => setLectureDetails({...lectureDetais, lectureTitle: e.target.value})}
+                  />
+                </div>
+                <div className='mb-2'>
+                  <p>Duration (minutes)</p>
+                  <input 
+                    type="number" 
+                    className='mt-1 block w-full border rounded py-1 px-2'
+                    value={lectureDetais.lectureDuration}
+                    onChange={(e) => setLectureDetails({...lectureDetais, lectureDuration: e.target.value})}
+                  />
+                </div>
               </div>
             </div>
           )
