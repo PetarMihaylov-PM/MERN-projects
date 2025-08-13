@@ -88,13 +88,30 @@ function AddCourse() {
                       <span>
                         {index + 1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - <a href={lecture.lectureUrl} target='_blank' className='text-blue-500'>Link</a> - {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}
                       </span>
+                      <img src={assets.cross_icon} alt="cross-icon"  className='cursor-pointer'/>
                     </div>
                   ))}
+                  <div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2'>
+                    + Add Lecture
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </div>
+        <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer'>+ Add Chapter</div>
+
+        {
+          showPopup && (
+            <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50'>
+              <div className='bg-white text-gray-700 p-4 rounded relative w-full max-w-80'>
+                <h2 className='text-lg font-semibold mb-4'>
+                  Add Lecture
+                </h2>
+              </div>
+            </div>
+          )
+        }
       </form>
 
     </div>
