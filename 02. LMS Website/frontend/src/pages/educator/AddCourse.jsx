@@ -47,6 +47,22 @@ function AddCourse() {
   };
 
 
+  function handleLecture (action, chapterId, lectureIndex) {
+    if (action === 'add') {
+      setCurrentChapterId(chapterId);
+      setShowPopup(true);
+    } else if (action === 'remove') {
+      setChapters(
+        chapters.map((chapter) => {
+          if(chapter.chapterId === chapterId){
+            chapter.chapterContent.splice(lectureIndex, 1);
+          }
+          return chapter;
+        })
+      );
+    }
+  }
+
   useEffect(() => {
     if (!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, {
@@ -97,7 +113,7 @@ function AddCourse() {
         <div>
           {chapters.map((chapter, index) => (
             <div key={index} className='bg-white border rounded-lg mb-4'>
-              <div className='fkex justify-between items-center p-4 border-b'>
+              <div className='flex justify-between items-center p-4 border-b'>
                 <div className='flex items-center'>
                   <img src={assets.dropdown_icon} width={14} alt="dropdown-icon" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && '-rotate-90'}`} />
                   <span className='font-semibold'>{index + 1} {chapter.chapterTitle}</span>
@@ -112,10 +128,10 @@ function AddCourse() {
                       <span>
                         {index + 1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - <a href={lecture.lectureUrl} target='_blank' className='text-blue-500'>Link</a> - {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}
                       </span>
-                      <img src={assets.cross_icon} alt="cross-icon" className='cursor-pointer' />
+                      <img src={assets.cross_icon} alt="cross-icon" className='cursor-pointer' onClick={() => handleLecture('remove', chapter.chapterId, index)}/>
                     </div>
                   ))}
-                  <div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2'>
+                  <div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2' onClick={() => handleLecture("add", chapter.chapterId)}>
                     + Add Lecture
                   </div>
                 </div>
