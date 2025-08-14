@@ -23,8 +23,8 @@ function AddCourse() {
   });
 
 
-  useEffect(()=>{
-    if(!quillRef.current && editorRef.current){
+  useEffect(() => {
+    if (!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, {
         theme: 'snow',
       });
@@ -37,7 +37,7 @@ function AddCourse() {
         <div className='flex flex-col gap-1'>
           <p>Course Title</p>
           <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500' required
-            onChange={(e)=> setCourseTitle(e.target.value)}
+            onChange={(e) => setCourseTitle(e.target.value)}
             value={courseTitle}
           />
         </div>
@@ -49,22 +49,22 @@ function AddCourse() {
         <div className='flex items-center justify-between flex-wrap'>
           <div className='flex flex-col gap-1'>
             <p>Course Price</p>
-            <input onChange={(e)=>setCoursePrice(e.target.value)} value={coursePrice} type="number" placeholder='0' className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required/>
+            <input onChange={(e) => setCoursePrice(e.target.value)} value={coursePrice} type="number" placeholder='0' className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required />
           </div>
 
           <div className='flex md:flex-row flex-col items-center gap-3'>
             <p>Course Thimbnail</p>
             <label htmlFor="thumbnailImage" className='flex items-center gap-3'>
               <img src={assets.file_upload_icon} alt="upload-icon" className='p-3 bg-blue-500 rounded' />
-              <input type="file" id='thumbnailImage' onChange={(e) => setImage(e.target.files[0])} accept='image/*' hidden/>
-              <img className='max-h-10' src={image ? URL.createObjectURL(image) : ''} alt=''/>
+              <input type="file" id='thumbnailImage' onChange={(e) => setImage(e.target.files[0])} accept='image/*' hidden />
+              <img className='max-h-10' src={image ? URL.createObjectURL(image) : ''} alt='' />
             </label>
           </div>
         </div>
 
         <div className='flex flex-col gap-1'>
           <p>Discount %</p>
-          <input onChange={(e) => setDiscount(e.target.value)} value={discount} type="number" placeholder='0' min={0} max={100} className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required/>
+          <input onChange={(e) => setDiscount(e.target.value)} value={discount} type="number" placeholder='0' min={0} max={100} className='outline-none md:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required />
         </div>
 
 
@@ -79,7 +79,7 @@ function AddCourse() {
                   <span className='font-semibold'>{index + 1} {chapter.chapterTitle}</span>
                 </div>
                 <span className='text-gray-500'>{chapter.chapterContent.length} Lectures</span>
-                <img src={assets.cross_icon} alt="" className='cursor-pointer'/>
+                <img src={assets.cross_icon} alt="" className='cursor-pointer' />
               </div>
               {!chapter.collapsed && (
                 <div className='p-4'>
@@ -88,7 +88,7 @@ function AddCourse() {
                       <span>
                         {index + 1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - <a href={lecture.lectureUrl} target='_blank' className='text-blue-500'>Link</a> - {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}
                       </span>
-                      <img src={assets.cross_icon} alt="cross-icon"  className='cursor-pointer'/>
+                      <img src={assets.cross_icon} alt="cross-icon" className='cursor-pointer' />
                     </div>
                   ))}
                   <div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2'>
@@ -98,59 +98,64 @@ function AddCourse() {
               )}
             </div>
           ))}
-        </div>
-        <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer'>+ Add Chapter</div>
 
-        {
-          showPopup && (
-            <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50'>
-              <div className='bg-white text-gray-700 p-4 rounded relative w-full max-w-80'>
-                <h2 className='text-lg font-semibold mb-4'>
-                  Add Lecture
-                </h2>
+          <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer'>+ Add Chapter</div>
 
-                <div className='mb-2'>
-                  <p>Lecture Title</p>
-                  <input 
-                    type="text" 
-                    className='mt-1 block w-full border rounded py-1 px-2'
-                    value={lectureDetais.lectureTitle}
-                    onChange={(e) => setLectureDetails({...lectureDetais, lectureTitle: e.target.value})}
-                  />
-                </div>
-                <div className='mb-2'>
-                  <p>Duration (minutes)</p>
-                  <input 
-                    type="number" 
-                    className='mt-1 block w-full border rounded py-1 px-2'
-                    value={lectureDetais.lectureDuration}
-                    onChange={(e) => setLectureDetails({...lectureDetais, lectureDuration: e.target.value})}
-                  />
-                </div>
+          {
+            showPopup && (
+              <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50'>
+                <div className='bg-white text-gray-700 p-4 rounded relative w-full max-w-80'>
+                  <h2 className='text-lg font-semibold mb-4'>
+                    Add Lecture
+                  </h2>
 
-                <div className='mb-2'>
-                  <p>Lecture URL</p>
-                  <input 
-                    type="text" 
-                    className='mt-1 block w-full border rounded py-1 px-2'
-                    value={lectureDetais.lectureUlr}
-                    onChange={(e) => setLectureDetails({...lectureDetais, lectureUlr: e.target.value})}
-                  />
-                </div>
+                  <div className='mb-2'>
+                    <p>Lecture Title</p>
+                    <input
+                      type="text"
+                      className='mt-1 block w-full border rounded py-1 px-2'
+                      value={lectureDetais.lectureTitle}
+                      onChange={(e) => setLectureDetails({ ...lectureDetais, lectureTitle: e.target.value })}
+                    />
+                  </div>
+                  <div className='mb-2'>
+                    <p>Duration (minutes)</p>
+                    <input
+                      type="number"
+                      className='mt-1 block w-full border rounded py-1 px-2'
+                      value={lectureDetais.lectureDuration}
+                      onChange={(e) => setLectureDetails({ ...lectureDetais, lectureDuration: e.target.value })}
+                    />
+                  </div>
 
-                <div className='flex gap-2 my-4'>
-                  <p>Is Preview Free?</p>
-                  <input 
-                    type="checkbox" 
-                    className='mt-1 scale-125'
-                    checked={lectureDetais.isPreviewFree}
-                    onChange={(e) => setLectureDetails({...lectureDetais, isPreviewFree: e.target.checked})}
-                  />
+                  <div className='mb-2'>
+                    <p>Lecture URL</p>
+                    <input
+                      type="text"
+                      className='mt-1 block w-full border rounded py-1 px-2'
+                      value={lectureDetais.lectureUlr}
+                      onChange={(e) => setLectureDetails({ ...lectureDetais, lectureUlr: e.target.value })}
+                    />
+                  </div>
+
+                  <div className='flex gap-2 my-4'>
+                    <p>Is Preview Free?</p>
+                    <input
+                      type="checkbox"
+                      className='mt-1 scale-125'
+                      checked={lectureDetais.isPreviewFree}
+                      onChange={(e) => setLectureDetails({ ...lectureDetais, isPreviewFree: e.target.checked })}
+                    />
+                  </div>
+
+                  <button type='button' className='w-full bg-fuchsia-600 text-white px-4 py-2 rounded'>Add</button>
+
+                  <img onClick={() => setShowPopup(false)} src={assets.cross_icon} alt="cross-icon" className='absolute top-4 right-4 w-4 cursor-pointer' />
                 </div>
               </div>
-            </div>
-          )
-        }
+            )
+          }
+        </div>
       </form>
 
     </div>
