@@ -22,6 +22,30 @@ function AddCourse() {
     isPreviewFree: false,
   });
 
+  function handleChapter(action, chapterId){
+    if(action === 'add'){
+      const title = prompt('Enter Chapter Name:');
+      if(title) {
+        const newChapter = {
+          chapterId: uniqid(),
+          chapterTitle: title,
+          chapterContent: [],
+          collapsed: false,
+          chapterOrder: chapters.length > 0 ? chapters.slice(-1)[0].chapterOrder + 1 : 1,
+        };
+        setChapters([...chapters, newChapter]);
+      }
+    } else if (action === 'remove') {
+      setChapters(chapters.filter((chapter) => chapter.chapterId !== chapterId));
+    } else if (action === 'toggle') {
+      setChapters(
+        chapters.map((chapter) => 
+          chapter.chapterId === chapterId ? {...chapter, collapsed: !chapter.collapsed } : chapter
+        )
+      );
+    }
+  };
+
 
   useEffect(() => {
     if (!quillRef.current && editorRef.current) {
@@ -99,7 +123,7 @@ function AddCourse() {
             </div>
           ))}
 
-          <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer'>+ Add Chapter</div>
+          <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer' onClick={()=> handleChapter('add')}>+ Add Chapter</div>
 
           {
             showPopup && (
@@ -156,8 +180,10 @@ function AddCourse() {
             )
           }
         </div>
+        <button type='submit' className='bg-black text-white w-max py-2.5 px-8 rounded my-4'>
+          ADD
+        </button>
       </form>
-
     </div>
   )
 }
