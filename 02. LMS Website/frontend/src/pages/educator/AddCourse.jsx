@@ -127,6 +127,26 @@ function AddCourse() {
                     onChange={(e) => setLectureDetails({...lectureDetais, lectureDuration: e.target.value})}
                   />
                 </div>
+
+                <div className='mb-2'>
+                  <p>Lecture URL</p>
+                  <input 
+                    type="text" 
+                    className='mt-1 block w-full border rounded py-1 px-2'
+                    value={lectureDetais.lectureUlr}
+                    onChange={(e) => setLectureDetails({...lectureDetais, lectureUlr: e.target.value})}
+                  />
+                </div>
+
+                <div className='flex gap-2 my-4'>
+                  <p>Is Preview Free?</p>
+                  <input 
+                    type="checkbox" 
+                    className='mt-1 scale-125'
+                    checked={lectureDetais.isPreviewFree}
+                    onChange={(e) => setLectureDetails({...lectureDetais, isPreviewFree: e.target.checked})}
+                  />
+                </div>
               </div>
             </div>
           )
