@@ -85,7 +85,13 @@ function AddCourse() {
       lectureUrl: '',
       isPreviewFree: false
     });
+
   };
+
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+    }
+
 
   useEffect(() => {
     if (!quillRef.current && editorRef.current) {
@@ -97,7 +103,7 @@ function AddCourse() {
 
   return (
     <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
-      <form className='flex flex-col gap-4 max-w-md w-full text-gray-500'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4 max-w-md w-full text-gray-500'>
         <div className='flex flex-col gap-1'>
           <p>Course Title</p>
           <input type="text" placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500' required
@@ -213,7 +219,7 @@ function AddCourse() {
                     />
                   </div>
 
-                  <button type='button' className='w-full bg-fuchsia-600 text-white px-4 py-2 rounded'>Add</button>
+                  <button onClick={addLecture} type='button' className='w-full bg-fuchsia-600 text-white px-4 py-2 rounded'>Add</button>
 
                   <img onClick={() => setShowPopup(false)} src={assets.cross_icon} alt="cross-icon" className='absolute top-4 right-4 w-4 cursor-pointer' />
                 </div>
