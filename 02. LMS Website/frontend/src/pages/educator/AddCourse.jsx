@@ -115,11 +115,12 @@ function AddCourse() {
             <div key={index} className='bg-white border rounded-lg mb-4'>
               <div className='flex justify-between items-center p-4 border-b'>
                 <div className='flex items-center'>
-                  <img src={assets.dropdown_icon} width={14} alt="dropdown-icon" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && '-rotate-90'}`} />
+                  <img onClick={() => handleChapter('toggle', chapter.chapterId)}
+                    src={assets.dropdown_icon} width={14} alt="dropdown-icon" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && '-rotate-90'}`} />
                   <span className='font-semibold'>{index + 1} {chapter.chapterTitle}</span>
                 </div>
                 <span className='text-gray-500'>{chapter.chapterContent.length} Lectures</span>
-                <img src={assets.cross_icon} alt="" className='cursor-pointer' />
+                <img onClick={() => handleChapter('remove', chapter.chapterId)} src={assets.cross_icon} className='cursor-pointer' />
               </div>
               {!chapter.collapsed && (
                 <div className='p-4'>
