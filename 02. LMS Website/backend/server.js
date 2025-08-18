@@ -4,6 +4,7 @@ import 'dotenv/config';
 import connectDB from './configs/mongodb.js';
 import { clerkWebhooks } from './controllers/webhooks.js';
 import educatorRouter from './routes/educatorRoutes.js';
+import { clerkMiddleware } from '@clerk/express';
 
 //Initialize Express
 const app = express();
@@ -15,6 +16,7 @@ await connectDB();
 
 //Middlewares
 app.use(cors());
+app.use(clerkMiddleware());
 
 
 //Routes
