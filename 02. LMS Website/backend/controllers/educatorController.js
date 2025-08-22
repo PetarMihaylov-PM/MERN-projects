@@ -1,6 +1,7 @@
-import { clerkClient } from '@clerk/express';
+import { clerkClient, User } from '@clerk/express';
 import {v2 as cloudinary} from "cloudinary";
 import Course from '../models/course.js';
+import { Purchase } from '../models/purchase.js';
 
 //update role to educator
 export const updateRoleToEducator = async(req, res) => {
@@ -64,4 +65,47 @@ export const getEducatorCourses = async(req, res) => {
   } catch (error) {
     res.json({success:false, message: error.message});
   }
+}
+
+// Get educator dashboard data
+export const educatorDashboardData = async(req, res) => {
+  try {
+    const educator = req.auth.userId;
+    const courses = await Course.find(educator);
+    const totalCourses = courses.length;
+
+    const courseIds = courses.map(course => course._id);
+
+    //Calculate total earnings 
+    const purchases = await Purchase.find({
+      courseId: {$in: courseIds},
+      status: 'completed'
+    });
+
+    const totalEarnings = purchases.reduce((sum, purchase) => sum + purchase.amount, 0);
+
+
+    // Get enrolled students ids and titles
+    const enrolledStudentsData = [];
+    for(const course of courses) {
+      const students = await User.find({
+        _id: {$in: course.enrolledStudents}
+      }, 'name imageUrl');
+
+      students.forEach(student => {
+        enrolledStudentsData.push({
+          courseTitle: course.courseTitle,
+          student
+        });
+      });
+    }
+
+    res.json({success: true, dashboardData: {
+      totalEarnings, enrolledStudentsData, totalCourses
+    }})
+
+  } catch (error) {
+    
+  }
+  
 }
