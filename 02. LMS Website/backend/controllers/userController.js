@@ -1,3 +1,4 @@
+import Stripe from "stripe";
 import Course from "../models/course.js";
 import { Purchase } from "../models/purchase.js";
 import User from "../models/user.js";
@@ -36,7 +37,7 @@ export const purchaseCourse = async(req, res) => {
   try {
     
     const {courseId} = req.body;
-    const {origins} = req.headers;
+    const {origin} = req.headers;
     const userId = req.auth.userId;
     const userData = await User.findById(userId);
     const courseData = await Course.findById(courseId);
@@ -53,7 +54,35 @@ export const purchaseCourse = async(req, res) => {
 
     const newPurchase = await Purchase.create(purchaseData);
 
+    // Stripe Initialize
+    const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const currency = process.env.CURRENCY.toLowerCase();
+
+    // Creating line items for Stripe
+    const line_items = [{
+      price_data:{
+        currency,
+        product_data: {
+          name: courseData.courseTitle,
+        },
+        unit_amount: Math.floor(newPurchase.amount) * 100,
+      },
+      quantity: 1
+    }];
+
+    const session = await stripeInstance.checkout.sessions.create({
+      success_url: `${origin}/loading/my-enrollments`,
+      cancel_url: `${origin}/`,
+      line_items: line_items,
+      mode: 'payment',
+      metadata: {
+        purchaseId: purchaseData._id.toString()
+      }
+    });
+
+    res.json({success: true, session_url: session.url});
+
   } catch (error) {
-    
+    res.json({success: false, message:error.message});
   }
 }
