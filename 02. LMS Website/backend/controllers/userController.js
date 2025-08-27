@@ -89,7 +89,7 @@ export const purchaseCourse = async(req, res) => {
 }
 
 //Update User Course Progress
-const updateUserCourseProgress = async(req, res) => {
+export const updateUserCourseProgress = async(req, res) => {
   try {
     
     const userId = req.auth.userId;
@@ -133,5 +133,16 @@ export const getUserCourseProgress = async(req,res) => {
 
   } catch (error) {
     res.json({success: false, message: error.message});
+  }
+}
+
+//Add user Ratings to Course
+
+export const addUserRating = async(req,res) => {
+  const userId = req.auth.userId;
+  const { courseId, rating } = req.body;
+
+  if(!courseId || !userId || !rating || rating < 1 || rating > 5){
+    res.json({success: false, message: 'Invalid details'})
   }
 }
