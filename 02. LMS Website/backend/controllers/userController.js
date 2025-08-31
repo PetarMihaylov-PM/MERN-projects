@@ -163,7 +163,17 @@ export const addUserRating = async(req,res) => {
 
     const existingRatingIndex = course.courseRatings.findIndex(r => r.userId === userId);
 
+    if(existingRatingIndex > -1) {
+      course.courseRatings[existingRatingIndex].rating = rating;
+    } else {
+      course.courseRatings.push({userId, rating});    
+    }
+
+    await course.save();
+
+    return res.json({success: true, message: 'Rating added'});
+
   } catch (error) {
-    
+    return res.json({success: false, message: error.message});
   }
 }
