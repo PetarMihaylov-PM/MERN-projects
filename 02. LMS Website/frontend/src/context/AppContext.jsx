@@ -17,6 +17,7 @@ export const AppContextProvider = (props) => {
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [userData, setUserData] = useState(null);
   
   
   const currency = import.meta.env.VITE_CURRENCY;
@@ -27,7 +28,8 @@ export const AppContextProvider = (props) => {
   /* Fetch all courses */
   const getAllCourses = async () => {
     try {
-      const {data} = await axios.get(backendUrl + '/api/course/all');
+      const { data } = await axios.get(backendUrl + '/api/course/all');
+      console.log(data)
 
       if(data.success) {
         setAllCourses(data.courses);
@@ -36,7 +38,27 @@ export const AppContextProvider = (props) => {
       }
 
     } catch (error) {
-      
+        toast.error(data.message);
+    }
+  }
+
+
+  // fetch user data
+
+  const fetchUserData = async () => {
+    try {
+      const token = await getToken();
+
+      const { data } = await axios.get(backendUrl + '/api/user/data', {headers: {Authorization: `Bearer ${token}`}});
+
+      if(data.success) {
+        setUserData(data.user);
+      } else {
+        toast.error(data.message);
+      }
+
+    } catch (error) {
+      toast.error(data.message);
     }
   }
 
