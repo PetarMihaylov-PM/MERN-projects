@@ -126,7 +126,13 @@ export const AppContextProvider = (props) => {
 
   /* Fetch User Enrolled Courses */
   const fetchUserEnrolledCourses = async() => {
-    setEnrolledCourses(dummyCourses);
+    const token = await getToken();
+
+    const { data } = await axios.get(backendUrl + '/api/user/enrolled-courses', {headers: {Authorization: `Bearer ${token}`}});
+
+    if(data.success){
+      setEnrolledCourses(data.enrolledCourses.reverse());
+    }
   }
 
 
@@ -141,7 +147,12 @@ export const AppContextProvider = (props) => {
     calculateCourseDuration,
     calculateNoOfLectures,
     enrolledCourses,
-    fetchUserEnrolledCourses
+    fetchUserEnrolledCourses,
+    backendUrl,
+    userData,
+    setUserData,
+    getToken,
+    getAllCourses
   }
 
   useEffect(() => {
